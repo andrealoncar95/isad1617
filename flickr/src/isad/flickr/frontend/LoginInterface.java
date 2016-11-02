@@ -1,6 +1,11 @@
 package isad.flickr.frontend;
 
 import java.awt.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.stream.Stream;
+
 //import java.awt.BorderLayout;
 //import java.awt.Dimension;
 import javax.swing.*;
@@ -22,7 +27,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 public class LoginInterface extends JPanel{
 	
 	JPanel nagusia = new JPanel(new SpringLayout());
-	JPanel nagusiaSur = new JPanel(new BorderLayout());
+	//JPanel nagusiaSur = new JPanel(new BorderLayout());
 	
 	
 	private JTextField erabiltzailea, pasahitza;
@@ -34,7 +39,7 @@ public class LoginInterface extends JPanel{
 	
 	private JButton login;
 	
-	public LoginInterface() {
+	public LoginInterface() throws IOException {
 		super(new BorderLayout());
 		
 		erabiltzailea = new JTextField(15);
@@ -48,45 +53,50 @@ public class LoginInterface extends JPanel{
 		pasahitza1.setText("Pasahitza");
 		erabiltzailea1.setText("Erabiltzailea");
 		
-		add(nagusia, BorderLayout.CENTER);
+		
+		add(nagusia, BorderLayout.SOUTH);
 		
 		nagusia.add(erabiltzailea1);
 		nagusia.add(erabiltzailea);
 		nagusia.add(pasahitza1);
 		nagusia.add(pasahitza);
+		nagusia.add(new JLabel(" "));
+		nagusia.add(login);
 		
-		SpringUtilities.makeCompactGrid(nagusia, 2, 2, 10, 10, 2, 2);
-		
-		add(nagusiaSur, BorderLayout.SOUTH);
-		
-		nagusiaSur.add(login, BorderLayout.EAST);
+		SpringUtilities.makeCompactGrid(nagusia, 3, 2, 10, 10, 2, 2);
 		
 		//Set up the picture label.
-		argazkia = new JLabel(createImageIcon("images/flickrLogo.gif"));
 		
+		ImageIcon argazkia2 = createImageIcon("flickrLogo.gif");
+		Image img = argazkia2.getImage();
+		
+		Dimension pantaila = Toolkit.getDefaultToolkit().getScreenSize();
+    	img = img.getScaledInstance((int)pantaila.getWidth() / 2, (int)pantaila.getHeight() / 2, Image.SCALE_SMOOTH);
+    	ImageIcon ikonoBerria = new ImageIcon(img);
+    	argazkia = new JLabel(ikonoBerria);
 		argazkia.setPreferredSize(new Dimension(177, 122));
-		
-		add(argazkia, BorderLayout.NORTH);
+		add(argazkia, BorderLayout.CENTER);
 		setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
+		
+		
+		
 
 	}
 	
-	protected static ImageIcon createImageIcon(String path) {
-        java.net.URL imgURL = LoginInterface.class.getResource(path);
-        if (imgURL != null) {
-            return new ImageIcon(imgURL);
-        } else {
-            System.err.println("Couldn't find file: " + path);
-            return null;
-        }
+	protected static ImageIcon createImageIcon(String path) throws IOException {
+       InputStream s = LoginInterface.class.getResourceAsStream(path);
+       byte[] b = new byte[1000000000];
+       s.read(b);
+       return new ImageIcon(b);
     }
 	
 	/**
      * Create the GUI and show it.  For thread safety,
      * this method should be invoked from the
      * event-dispatching thread.
+	 * @throws IOException 
      */
-    private static void createAndShowGUI() {
+    private static void createAndShowGUI() throws IOException {
         //Create and set up the window.
         JFrame frame = new JFrame("Erabiltzailea eta pasahitza sartzeko formularioa");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -102,7 +112,7 @@ public class LoginInterface extends JPanel{
         frame.setLocationRelativeTo(null);
     }
 	
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
@@ -112,11 +122,16 @@ public class LoginInterface extends JPanel{
 		}
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                createAndShowGUI();
+                try {
+					createAndShowGUI();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });;
 
-	}*/
+	}
 	
 	
 	

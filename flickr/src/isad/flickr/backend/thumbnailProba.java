@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.io.File;
+import java.util.Vector;
+
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -11,20 +13,27 @@ import javax.swing.JLabel;
 
 public class thumbnailProba extends JFrame{
     static final File dir = new File("C:/Users/eduardo/Pictures/ORDENADOR DE MESA/cadiz/cadiz1");
-
+   
+    Vector<lagThumbnail> data = new Vector<lagThumbnail>();
+    private Vector<String> columnNames = new Vector<String>();
+    
     public thumbnailProba() {
     	
     	setLayout(new GridLayout(5, 5));
 
         if (dir.isDirectory()) { // make sure it's a directory
             for (final File f : dir.listFiles()) {
-            	System.out.println("image: " + f.getName());
-                
+            	//System.out.println("image: " + f.getName());
+            	
                 ImageIcon image = new ImageIcon("C:/Users/eduardo/Pictures/ORDENADOR DE MESA/cadiz/cadiz1/"+ f.getName());
                
             	Image img = image.getImage();
             	Image argazkia = img.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);
             	ImageIcon ikonoBerria = new ImageIcon(argazkia);
+            	//String izena = img.toString();
+            	//System.out.println(image.getImage());
+            	
+            	//data.add(new lagThumbnail("Kathy", "Smith", "Snowboarding", 5, false));
             	
             	JLabel imagelabel = new JLabel(ikonoBerria);
                 imagelabel.setPreferredSize(new Dimension(17, 22));
@@ -33,6 +42,7 @@ public class thumbnailProba extends JFrame{
             }
         }
     }
+
     public void bistaratu() {
 		setSize(275, 125);
 		setVisible(true);

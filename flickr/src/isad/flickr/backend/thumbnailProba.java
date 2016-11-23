@@ -4,6 +4,9 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Vector;
 
 import javax.swing.BoxLayout;
@@ -24,7 +27,8 @@ public class thumbnailProba extends JFrame{
         if (dir.isDirectory()) { // make sure it's a directory
             for (final File f : dir.listFiles()) {
             	//System.out.println("image: " + f.getName());
-            	
+            	//Path fitx = "C:/Users/eduardo/Pictures/ORDENADOR DE MESA/cadiz/cadiz1/"+ f.getName();
+            	//System.out.println(Files.readAttributes(fitx, BasicFileAttributes.class));
                 ImageIcon image = new ImageIcon("C:/Users/eduardo/Pictures/ORDENADOR DE MESA/cadiz/cadiz1/"+ f.getName());
                
             	Image img = image.getImage();

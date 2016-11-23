@@ -4,14 +4,14 @@ import java.sql.Date;
 
 import javax.swing.ImageIcon;
 
-public class lagThumbnail {
+public class LagThumbnail {
 	
 	ImageIcon image;
 	String izena;
 	Date noizAtara;
 	Boolean deskargatu;
 	
-	public lagThumbnail(ImageIcon image, String izena, Date noizAtara, Boolean deskargatu) {
+	public LagThumbnail(ImageIcon image, String izena, Date noizAtara, Boolean deskargatu) {
 			super();
 			this.izena = izena;
 			this.image = image;

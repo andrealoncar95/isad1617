@@ -13,7 +13,7 @@ import javax.swing.table.AbstractTableModel;
 
 public class MyTableModel extends AbstractTableModel {
 	static final File dir = new File("C:/Users/eduardo/Pictures/ORDENADOR DE MESA/cadiz/cadiz1");
-	private Vector<lagThumbnail> data = new Vector<lagThumbnail>();
+	private Vector<LagThumbnail> data = new Vector<LagThumbnail>();
 	private Vector<String> columnNames = new Vector<String>();
 	
 	
@@ -35,7 +35,7 @@ public class MyTableModel extends AbstractTableModel {
             	ImageIcon ikonoBerria = new ImageIcon(argazkia);
             	Long ms = f.lastModified();
             	Date d = new Date(ms);
-            	data.add(new lagThumbnail(ikonoBerria, f.getName() ,d,  false));
+            	data.add(new LagThumbnail(ikonoBerria, f.getName() ,d,  false));
             }
         }
 	}
@@ -51,8 +51,6 @@ public class MyTableModel extends AbstractTableModel {
 	public int getColumnCount() {
 		return columnNames.size();
 	}
-
-	
 	
 	@Override
 	public int getRowCount() {

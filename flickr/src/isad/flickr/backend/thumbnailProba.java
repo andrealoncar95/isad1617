@@ -17,7 +17,7 @@ import javax.swing.JLabel;
 public class thumbnailProba extends JFrame{
     static final File dir = new File("C:/Users/eduardo/Pictures/ORDENADOR DE MESA/cadiz/cadiz1");
    
-    Vector<lagThumbnail> data = new Vector<lagThumbnail>();
+    Vector<LagThumbnail> data = new Vector<LagThumbnail>();
     private Vector<String> columnNames = new Vector<String>();
     
     public thumbnailProba() {

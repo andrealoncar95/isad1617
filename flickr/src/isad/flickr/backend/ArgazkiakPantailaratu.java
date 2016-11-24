@@ -25,7 +25,7 @@ import com.flickr4java.flickr.photosets.PhotosetsInterface;
 import com.flickr4java.flickr.util.IOUtilities;
 
 public class ArgazkiakPantailaratu {
-
+// komentaio
 	static String apiKey;
 
 	static String sharedSecret;

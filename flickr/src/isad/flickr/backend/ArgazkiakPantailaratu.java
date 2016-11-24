@@ -32,6 +32,7 @@ public class ArgazkiakPantailaratu {
 
 	Flickr f;
 
+	
 	REST rest;
 
 	RequestContext requestContext;

@@ -67,7 +67,7 @@ public class LoginInterface extends JPanel{
 		
 		//Set up the picture label.
 		
-		ImageIcon argazkia2 = createImageIcon("flickrLogo.gif");
+		ImageIcon argazkia2 = new ImageIcon("flickrLogo.gif");
 		Image img = argazkia2.getImage();
 		
 		Dimension pantaila = Toolkit.getDefaultToolkit().getScreenSize();
@@ -83,12 +83,7 @@ public class LoginInterface extends JPanel{
 
 	}
 	
-	protected static ImageIcon createImageIcon(String path) throws IOException {
-       InputStream s = LoginInterface.class.getResourceAsStream(path);
-       byte[] b = new byte[1000000000];
-       s.read(b);
-       return new ImageIcon(b);
-    }
+
 	
 	/**
      * Create the GUI and show it.  For thread safety,

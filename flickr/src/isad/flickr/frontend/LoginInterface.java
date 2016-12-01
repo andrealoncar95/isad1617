@@ -1,6 +1,8 @@
 package isad.flickr.frontend;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -10,19 +12,8 @@ import java.util.stream.Stream;
 //import java.awt.Dimension;
 import javax.swing.*;
 
-/*import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import javax.swing.SpringLayout;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-*/
+import isad.flickr.backend.LoginAuthentication;
+import isad.flickr.kudeatzaileak.DBkud;
 
 public class LoginInterface extends JPanel{
 	
@@ -82,6 +73,24 @@ public class LoginInterface extends JPanel{
 		
 
 	}
+	
+	private void loginActionListener() {
+		login.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			if (!LoginAuthentication.instantzia.konektatu(erabiltzailea.getText(), pasahitza.getText()).equals(null)) {
+				
+			}
+			else {}
+			
+			
+			
+				
+	}});
+
+}
 	
 
 	

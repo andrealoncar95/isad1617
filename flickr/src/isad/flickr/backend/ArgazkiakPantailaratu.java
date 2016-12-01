@@ -32,7 +32,6 @@ public class ArgazkiakPantailaratu {
 
 	Flickr f;
 
-	
 	REST rest;
 
 	RequestContext requestContext;
@@ -86,6 +85,7 @@ public class ArgazkiakPantailaratu {
 				String title = photoset.getTitle();
 				String secret = photoset.getSecret();
 				int photoCount = photoset.getPhotoCount();
+				Photo argazki = photoset.getPrimaryPhoto();
 
 				System.out.println("Title:" + title + " Secret:" + secret + " Count:" + photoCount);
 
@@ -130,7 +130,7 @@ public class ArgazkiakPantailaratu {
 	@SuppressWarnings("deprecation")
 	public boolean saveImage(Photo p) {
 
-		String path = "pics" + File.separator;
+		String path = "images" + File.separator;
 		String cleanTitle = convertToFileSystemChar(p.getTitle());
 
 		File orgFile = new File(path + File.separator + cleanTitle + "_" + p.getId() + "_o." + p.getOriginalFormat());

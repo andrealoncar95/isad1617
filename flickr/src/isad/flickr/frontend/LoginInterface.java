@@ -12,8 +12,8 @@ import java.util.stream.Stream;
 //import java.awt.Dimension;
 import javax.swing.*;
 
-import isad.flickr.backend.LoginAuthentication;
 import isad.flickr.kudeatzaileak.DBkud;
+import isad.flickr.kudeatzaileak.LoginDB;
 
 public class LoginInterface extends JPanel{
 	
@@ -80,7 +80,7 @@ public class LoginInterface extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
-			if (!LoginAuthentication.instantzia.konektatu(erabiltzailea.getText(), pasahitza.getText()).equals(null)) {
+			if (!LoginDB.instantzia.konektatu(erabiltzailea.getText(), pasahitza.getText()).equals(null)) {
 				
 			}
 			else {}

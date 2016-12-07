@@ -11,11 +11,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.table.AbstractTableModel;
 
+import com.flickr4java.flickr.photos.Photo;
+import com.flickr4java.flickr.photos.PhotoList;
+
 public class MyTableModel extends AbstractTableModel {
 	static final File dir = new File("C:/Users/eduardo/Pictures/ORDENADOR DE MESA/cadiz/cadiz1");
+	private PhotoList<Photo> lista = new PhotoList<Photo>();
 	private Vector<LagThumbnail> data = new Vector<LagThumbnail>();
 	private Vector<String> columnNames = new Vector<String>();
-	
+	private ArgazkiakPantailaratu ap;
 	
 	public MyTableModel(){
 		kargatu();
@@ -23,22 +27,19 @@ public class MyTableModel extends AbstractTableModel {
 	
 	private void kargatu(){
 		hasieratuZutabeIzenak();
-
-        if (dir.isDirectory()) { // make sure it's a directory
-            for (final File f : dir.listFiles()) {
+		lista = ap.irudiakItzuli();
+            for ( Photo f : lista) {
             	//System.out.println("image: " + f.getName());
             	
-                ImageIcon image = new ImageIcon("/Pictures"+ f.getName());
+                ImageIcon image = new ImageIcon(f.getTitle());
                
             	Image img = image.getImage();
             	Image argazkia = img.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);
             	ImageIcon ikonoBerria = new ImageIcon(argazkia);
-            	Long ms = f.lastModified();
-            	Date d = new Date(ms);
-            	data.add(new LagThumbnail(ikonoBerria, f.getName() ,d,  false));
+            	Date d = (Date) f.getLastUpdate();
+            	data.add(new LagThumbnail(ikonoBerria, f.getTitle() ,d,  false));
             }
         }
-	}
 	
 	public void hasieratuZutabeIzenak(){
 		columnNames.add("Irudia");

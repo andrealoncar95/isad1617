@@ -18,7 +18,7 @@ import com.flickr4java.flickr.auth.Auth;
 import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photos.PhotoList;
-import com.flickr4java.flickr.photos.PhotosInterface;
+
 import com.flickr4java.flickr.photosets.Photoset;
 import com.flickr4java.flickr.photosets.Photosets;
 import com.flickr4java.flickr.photosets.PhotosetsInterface;
@@ -30,19 +30,20 @@ public class ArgazkiakPantailaratu {
 
 	static String sharedSecret;
 
-	Flickr f;
+	static Flickr f;
 
 	REST rest;
 
 	RequestContext requestContext;
 
-	Properties properties = null;
+	 Properties properties = null;
 
 	public ArgazkiakPantailaratu() throws IOException {
 		InputStream in = null;
 		try {
 			in = getClass().getResourceAsStream("/setup.properties");
 			properties = new Properties();
+
 			properties.load(in);
 		} finally {
 			IOUtilities.close(in);
@@ -85,9 +86,8 @@ public class ArgazkiakPantailaratu {
 				String title = photoset.getTitle();
 				String secret = photoset.getSecret();
 				int photoCount = photoset.getPhotoCount();
-				Photo argazki = photoset.getPrimaryPhoto();
 
-				System.out.println("Title:" + title + " Secret:" + secret + " Count:" + photoCount);
+				System.out.println("Albumaren titulua:" + title + " Secret:" + secret + " Count:" + photoCount);
 
 				PhotoList<Photo> col;
 				int PHOTOSPERPAGE = 2;
@@ -112,6 +112,46 @@ public class ArgazkiakPantailaratu {
 		}
 
 	}
+	
+	public PhotoList<Photo> irudiakItzuli() {
+		
+
+		String userId = properties.getProperty("nsid");
+		// String secret = properties.getProperty("secret");
+		PhotoList<Photo> lista = new PhotoList<Photo>();
+		PhotosetsInterface photosetsInterface = f.getPhotosetsInterface();
+		Photosets photosets;
+		
+		try {
+			photosets = photosetsInterface.getList(userId);
+			
+			Collection<Photoset> bildumak = photosets.getPhotosets();		
+			for (Photoset photoset : bildumak) {
+				String id = photoset.getId();
+				photoset.getPhotoCount();
+				PhotoList<Photo> col;
+				int PHOTOSPERPAGE = 2;
+				int HOWMANYPAGES = 1; // (int) Math.ceil(photoCount / 10);
+				for (int page = 1; page <= HOWMANYPAGES; page++) {
+					col = photosetsInterface.getPhotos(id, PHOTOSPERPAGE, page);
+
+					for (Photo argazkia : col) {
+						
+						lista.add(argazkia);
+						
+					}
+				}
+				
+			}
+			
+			
+		} catch (FlickrException e) {
+			e.printStackTrace();
+		}
+		
+		return lista;
+	}
+
 
 	// convert filename to clean filename
 	public static String convertToFileSystemChar(String name) {
@@ -158,5 +198,5 @@ public class ArgazkiakPantailaratu {
 		}
 		return true;
 	}
-
+	
 }

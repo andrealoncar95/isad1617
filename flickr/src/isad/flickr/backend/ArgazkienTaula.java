@@ -4,9 +4,9 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-public class Taula extends JFrame {
+public class ArgazkienTaula extends JFrame {
 
-	public Taula() {
+	public ArgazkienTaula() {
 		super("Nire taula grafikoa");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JTable table = new JTable(new MyTableModel());
@@ -17,7 +17,7 @@ public class Taula extends JFrame {
 	}
 	
 	public static void main(String[] args) {
-		new Taula();
+		new ArgazkienTaula();
 	}
 }
 

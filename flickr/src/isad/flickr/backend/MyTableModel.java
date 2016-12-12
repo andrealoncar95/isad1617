@@ -12,9 +12,10 @@ import javax.swing.JLabel;
 import javax.swing.table.AbstractTableModel;
 
 public class MyTableModel extends AbstractTableModel {
-	static final File dir = new File("C:/Users/zarraga/Pictures/Referee");
+	
 	private Vector<LagThumbnail> data = new Vector<LagThumbnail>();
 	private Vector<String> columnNames = new Vector<String>();
+	private FileChooser fC;
 	
 	
 	public MyTableModel(){
@@ -23,12 +24,14 @@ public class MyTableModel extends AbstractTableModel {
 	
 	private void kargatu(){
 		hasieratuZutabeIzenak();
-
+		fC= new FileChooser();
+		File dir= fC.getDirektorioa();
+		
         if (dir.isDirectory()) { // make sure it's a directory
             for (final File f : dir.listFiles()) {
             	//System.out.println("image: " + f.getName());
             	
-                ImageIcon image = new ImageIcon("dir"+ f.getName());
+                ImageIcon image = new ImageIcon(dir+ f.getName());
                
             	Image img = image.getImage();
             	Image argazkia = img.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);

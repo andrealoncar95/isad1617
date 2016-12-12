@@ -36,20 +36,6 @@ public class FileChooser extends JFrame {
 
 	}
 
-	public ArrayList<Photo> irudiakLortu() {
-		ArrayList<Photo> argazkiak= new ArrayList<Photo>();
-		System.out.println(dir);
-		if (dir.isDirectory()) { // make sure it's a directory
-			for (final File f : dir.listFiles()) {
-				Image img = new ImageIcon(getClass().getResource(f.getName())).getImage();
-				System.out.println(dir.listFiles());
-					
-			}
-		}
-
-		return argazkiak;
-
-	}
 	
 	public File getDirektorioa(){
 		return dir;

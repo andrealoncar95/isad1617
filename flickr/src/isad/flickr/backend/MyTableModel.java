@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.io.File;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
@@ -16,7 +17,7 @@ import com.flickr4java.flickr.photos.PhotoList;
 
 public class MyTableModel extends AbstractTableModel {
 	//static final File dir = new File("C:/Users/eduardo/Pictures/ORDENADOR DE MESA/cadiz/cadiz1");
-	private PhotoList<Photo> lista = new PhotoList<Photo>();
+	private ArrayList<ImageIcon> lista = new ArrayList<ImageIcon>();
 	private Vector<LagThumbnail> data = new Vector<LagThumbnail>();
 	private Vector<String> columnNames = new Vector<String>();
 	private ArgazkiakPantailaratu ap;
@@ -31,16 +32,13 @@ public class MyTableModel extends AbstractTableModel {
 		//lista = ap.irudiakItzuli();
 		fC= new FileChooser();
 		lista= fC.irudiakLortu();
-            for ( Photo f : lista) {
-            	//System.out.println("image: " + f.getName());
-            	
-                ImageIcon image = new ImageIcon(f.getTitle());
+            for (ImageIcon f : lista) {
                
-            	Image img = image.getImage();
-            	Image argazkia = img.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);
-            	ImageIcon ikonoBerria = new ImageIcon(argazkia);
+            	Image img = f.getImage();
+            	img = img.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);
+            	ImageIcon ikonoBerria = new ImageIcon(img);
             	Date d = (Date) f.getLastUpdate();
-            	String karpetaIzena= "";
+            	String karpetaIzena= f.;
             	data.add(new LagThumbnail(ikonoBerria, f.getTitle() ,d,  false, karpetaIzena));
             }
         }
@@ -50,7 +48,7 @@ public class MyTableModel extends AbstractTableModel {
 		columnNames.add("Izena");
 		columnNames.add("Data");
 		columnNames.add("Deskargatua?");
-		columnNames.add("Karpeta");
+		//columnNames.add("Karpeta");
 	}
 	
 	@Override

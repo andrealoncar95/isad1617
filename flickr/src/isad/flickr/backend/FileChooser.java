@@ -1,6 +1,7 @@
 package isad.flickr.backend;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -13,7 +14,7 @@ import com.flickr4java.flickr.photos.PhotoList;
 
 public class FileChooser extends JFrame {
 
-	static File dir = null;
+	File dir = null;
 	private JFileChooser file= new JFileChooser();
 
 	public FileChooser() {
@@ -29,17 +30,20 @@ public class FileChooser extends JFrame {
 		dir=file.getSelectedFile();
 		getContentPane().add(file);
 		setVisible(true);
+		
 
 	}
 
-	public PhotoList<Photo> irudiakLortu() {
-		PhotoList<Photo> argazkiak= new PhotoList<Photo>();
+	public ArrayList<Photo> irudiakLortu() {
+		ArrayList<Photo> argazkiak= new ArrayList<Photo>();
+		System.out.println(dir);
 		if (dir.isDirectory()) { // make sure it's a directory
 			for (final File f : dir.listFiles()) {
-				//Photo image = dir.;
+				
                 Icon img = new ImageIcon(image.getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
             	Photo argazki= (Photo) img;
             	argazkiak.add(argazki);
+            	
 			}
 		}
 

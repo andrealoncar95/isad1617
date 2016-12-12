@@ -13,17 +13,19 @@ public class LoginDB {
 		
 	}
 
-	public LoginLag konektatu(String username, String pasahitza) {
+	public LoginLag konektatu(String erabiltzaile, String pasahitza) {
 
 		DBkud dbkud = DBkud.getInstantzia();
-		ResultSet rs = dbkud.execSQL("select username, pasahitza from erabiltzailea where username = '" + username + "' and pasahitza = '" + pasahitza + "')");
+		ResultSet rs = dbkud.execSQL("select username, password from erabiltzailea where username = '" + erabiltzaile + "' and password = '" + pasahitza + "')");
 		LoginLag emaitza = null;
+		String username =  null;
+		String password = null;
 		try {
 			while(rs.next()){
-				String erabiltzaile= rs.getString("username");
-				String password = rs.getString("pasahitza");
+				username = rs.getString("erabiltzaile");
+				password= rs.getString("pasahitza");
 				
-				emaitza = new LoginLag(erabiltzaile, password);
+				emaitza = new LoginLag(username, password);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

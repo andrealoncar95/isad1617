@@ -68,10 +68,6 @@ public class LoginInterface extends JPanel{
 		argazkia.setPreferredSize(new Dimension(177, 122));
 		add(argazkia, BorderLayout.CENTER);
 		setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
-		
-		
-		
-
 	}
 	
 	private void loginActionListener() {

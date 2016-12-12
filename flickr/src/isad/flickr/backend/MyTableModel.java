@@ -31,7 +31,7 @@ public class MyTableModel extends AbstractTableModel {
             for (final File f : dir.listFiles()) {
             	//System.out.println("image: " + f.getName());
             	
-                ImageIcon image = new ImageIcon(dir+ f.getName());
+                ImageIcon image = new ImageIcon(dir + File.separator + f.getName());
                //komentario
             	Image img = image.getImage();
             	Image argazkia = img.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);

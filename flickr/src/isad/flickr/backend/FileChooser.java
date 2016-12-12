@@ -1,5 +1,6 @@
 package isad.flickr.backend;
 
+import java.awt.Image;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -11,7 +12,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photos.PhotoList;
-import com.sun.prism.Image;
+
 
 public class FileChooser extends JFrame {
 
@@ -40,15 +41,18 @@ public class FileChooser extends JFrame {
 		System.out.println(dir);
 		if (dir.isDirectory()) { // make sure it's a directory
 			for (final File f : dir.listFiles()) {
-				Photo img= new Photo();
-				img.get
-				
-            	
+				Image img = new ImageIcon(getClass().getResource(f.getName())).getImage();
+				System.out.println(dir.listFiles());
+					
 			}
 		}
 
 		return argazkiak;
 
+	}
+	
+	public File getDirektorioa(){
+		return dir;
 	}
 
 

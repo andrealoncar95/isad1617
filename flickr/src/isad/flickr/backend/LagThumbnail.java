@@ -9,18 +9,20 @@ public class LagThumbnail {
 	ImageIcon image;
 	String izena;
 	Date noizAtara;
-	Boolean deskargatu;
+	Boolean igo;
+	String karpeta;
 	
-	public LagThumbnail(ImageIcon image, String izena, Date noizAtara, Boolean deskargatu) {
+	public LagThumbnail(ImageIcon image, String izena, Date noizAtara, Boolean igo, String karpeta) {
 			super();
 			this.izena = izena;
 			this.image = image;
 			this.noizAtara = noizAtara;
-			this.deskargatu = deskargatu;
+			this.igo = igo;
+			this.karpeta = karpeta;
 		}
 	@Override
 	public String toString() {
-		return "Lag [image =" + image +", izena=" + izena + ", Noiz atara da=" + noizAtara + ", deskargatu=" + deskargatu + "]";
+		return "Lag [image =" + image +", izena=" + izena + ", Noiz atara da=" + noizAtara + ", igo=" + igo + ", karpeta=" + karpeta + "]";
 	}
 	public Object getBalioa(int i) {
 		Object o = null;
@@ -35,7 +37,10 @@ public class LagThumbnail {
 			o = this.noizAtara;
 			break;
 		case 3:
-			o = this.deskargatu;
+			o = this.igo;
+			break;
+		case 4:
+			o = this.karpeta;
 			break;
 		default:
 			break;
@@ -56,7 +61,10 @@ public class LagThumbnail {
 			this.noizAtara = (Date) value;
 			break;
 		case 3:
-			this.deskargatu = (Boolean) value;
+			this.igo = (Boolean) value;
+			break;
+		case 4:
+			this.karpeta = (String) value;
 			break;
 		default:
 			break;

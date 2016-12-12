@@ -31,14 +31,16 @@ public class MyTableModel extends AbstractTableModel {
             for (final File f : dir.listFiles()) {
             	//System.out.println("image: " + f.getName());
             	
-                ImageIcon image = new ImageIcon(dir + "/" + f.getName());
+                ImageIcon image = new ImageIcon(dir + File.separator + f.getName());
                //komentario
             	Image img = image.getImage();
             	Image argazkia = img.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);
             	ImageIcon ikonoBerria = new ImageIcon(argazkia);
             	Long ms = f.lastModified();
             	Date d = new Date(ms);
-            	data.add(new LagThumbnail(ikonoBerria, f.getName() ,d,  false));
+            	String direk = dir.getAbsolutePath();
+            	direk = direk.split("\\\\")[direk.split("\\\\").length -1];
+            	data.add(new LagThumbnail(ikonoBerria, f.getName() ,d,  false, direk));
             }
         }
 	}
@@ -47,7 +49,8 @@ public class MyTableModel extends AbstractTableModel {
 		columnNames.add("Irudia");
 		columnNames.add("Izena");
 		columnNames.add("Data");
-		columnNames.add("Deskargatua?");
+		columnNames.add("Igo?");
+		columnNames.add("Karpeta");
 	}
 	
 	@Override
@@ -86,6 +89,9 @@ public class MyTableModel extends AbstractTableModel {
 		case 3:
 			o = Boolean.class;
 			break;
+		case 4:
+			o = String.class;
+			break;
 		default:
 			break;
 		}
@@ -93,7 +99,7 @@ public class MyTableModel extends AbstractTableModel {
 	}
 	
 	public boolean isCellEditable(int row, int col){
-		return col < 2;
+		return col == 3;
 	}
 	
 	public void setValueAt (Object value, int i, int j){

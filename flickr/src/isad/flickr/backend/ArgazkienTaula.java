@@ -11,7 +11,7 @@ import javax.swing.JTable;
 
 public class ArgazkienTaula extends JFrame {
 	JButton Igo = new JButton("Igo");
-	MyTableModel modeloa = new MyTableModel();
+	MyTableModel modeloa;
 
 	public ArgazkienTaula() {
 		super("Nire taula grafikoa");

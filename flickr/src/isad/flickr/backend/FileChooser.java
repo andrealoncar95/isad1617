@@ -31,7 +31,6 @@ public class FileChooser extends JFrame {
 		file.showOpenDialog(this);
 		dir=file.getSelectedFile();
 		getContentPane().add(file);
-		setVisible(true);
 		
 
 	}

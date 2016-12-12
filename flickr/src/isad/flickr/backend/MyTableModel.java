@@ -5,23 +5,17 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.io.File;
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.table.AbstractTableModel;
 
-import com.flickr4java.flickr.photos.Photo;
-import com.flickr4java.flickr.photos.PhotoList;
-
 public class MyTableModel extends AbstractTableModel {
-	//static final File dir = new File("C:/Users/eduardo/Pictures/ORDENADOR DE MESA/cadiz/cadiz1");
-	private ArrayList<Photo> lista = new ArrayList<Photo>();
+	static final File dir = new File("C:/Users/zarraga/Pictures/Referee");
 	private Vector<LagThumbnail> data = new Vector<LagThumbnail>();
 	private Vector<String> columnNames = new Vector<String>();
-	private ArgazkiakPantailaratu ap;
-	private FileChooser fC;
+	
 	
 	public MyTableModel(){
 		kargatu();
@@ -29,32 +23,36 @@ public class MyTableModel extends AbstractTableModel {
 	
 	private void kargatu(){
 		hasieratuZutabeIzenak();
-		//lista = ap.irudiakItzuli();
-		fC= new FileChooser();
-		lista= fC.irudiakLortu();
-            for (Photo f : lista) {
+
+        if (dir.isDirectory()) { // make sure it's a directory
+            for (final File f : dir.listFiles()) {
+            	//System.out.println("image: " + f.getName());
+            	
+                ImageIcon image = new ImageIcon("dir"+ f.getName());
                
-            	Image img = f.getImage();
-            	img = img.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);
-            	ImageIcon ikonoBerria = new ImageIcon(img);
-            	Date d = (Date) f.getLastUpdate();
-            	String karpetaIzena= f.;
-            	data.add(new LagThumbnail(ikonoBerria, f.getTitle() ,d,  false, karpetaIzena));
+            	Image img = image.getImage();
+            	Image argazkia = img.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);
+            	ImageIcon ikonoBerria = new ImageIcon(argazkia);
+            	Long ms = f.lastModified();
+            	Date d = new Date(ms);
+            	data.add(new LagThumbnail(ikonoBerria, f.getName() ,d,  false));
             }
         }
+	}
 	
 	public void hasieratuZutabeIzenak(){
 		columnNames.add("Irudia");
 		columnNames.add("Izena");
 		columnNames.add("Data");
 		columnNames.add("Deskargatua?");
-		//columnNames.add("Karpeta");
 	}
 	
 	@Override
 	public int getColumnCount() {
 		return columnNames.size();
 	}
+
+	
 	
 	@Override
 	public int getRowCount() {
@@ -85,9 +83,6 @@ public class MyTableModel extends AbstractTableModel {
 		case 3:
 			o = Boolean.class;
 			break;
-		case 4:
-			o = String.class;
-			break;
 		default:
 			break;
 		}
@@ -95,13 +90,21 @@ public class MyTableModel extends AbstractTableModel {
 	}
 	
 	public boolean isCellEditable(int row, int col){
-		return col == 1;
+		return col < 2;
 	}
 	
 	public void setValueAt (Object value, int i, int j){
 			data.get(i).insertElementAt(value, j);
 	}
 	
+	public static void main(String[] args) {
+		MyTableModel taula = new MyTableModel();
+		System.out.println("Zutabeak:" + taula.getColumnCount());
+		System.out.println("Lerroak: " + taula.getRowCount());
+		System.out.println("(2,2) elementuaren balioa:" + taula.getValueAt(2, 2));
+		System.out.println("Lehenengo zutabearen izena:" + taula.getColumnName(0));
+	
+	}
+	
 
 }
-

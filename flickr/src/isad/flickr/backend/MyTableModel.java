@@ -32,7 +32,7 @@ public class MyTableModel extends AbstractTableModel {
             	//System.out.println("image: " + f.getName());
             	
                 ImageIcon image = new ImageIcon(dir+ f.getName());
-               
+               //komentario
             	Image img = image.getImage();
             	Image argazkia = img.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);
             	ImageIcon ikonoBerria = new ImageIcon(argazkia);

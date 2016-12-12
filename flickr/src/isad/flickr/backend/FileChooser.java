@@ -11,6 +11,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photos.PhotoList;
+import com.sun.prism.Image;
 
 public class FileChooser extends JFrame {
 
@@ -39,10 +40,9 @@ public class FileChooser extends JFrame {
 		System.out.println(dir);
 		if (dir.isDirectory()) { // make sure it's a directory
 			for (final File f : dir.listFiles()) {
+				Photo img= new Photo();
+				img.get
 				
-                Icon img = new ImageIcon(image.getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
-            	Photo argazki= (Photo) img;
-            	argazkiak.add(argazki);
             	
 			}
 		}

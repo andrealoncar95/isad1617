@@ -17,7 +17,7 @@ import com.flickr4java.flickr.photos.PhotoList;
 
 public class MyTableModel extends AbstractTableModel {
 	//static final File dir = new File("C:/Users/eduardo/Pictures/ORDENADOR DE MESA/cadiz/cadiz1");
-	private ArrayList<ImageIcon> lista = new ArrayList<ImageIcon>();
+	private ArrayList<Photo> lista = new ArrayList<Photo>();
 	private Vector<LagThumbnail> data = new Vector<LagThumbnail>();
 	private Vector<String> columnNames = new Vector<String>();
 	private ArgazkiakPantailaratu ap;
@@ -32,7 +32,7 @@ public class MyTableModel extends AbstractTableModel {
 		//lista = ap.irudiakItzuli();
 		fC= new FileChooser();
 		lista= fC.irudiakLortu();
-            for (ImageIcon f : lista) {
+            for (Photo f : lista) {
                
             	Image img = f.getImage();
             	img = img.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);

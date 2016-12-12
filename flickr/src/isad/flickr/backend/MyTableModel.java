@@ -15,11 +15,12 @@ import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photos.PhotoList;
 
 public class MyTableModel extends AbstractTableModel {
-	static final File dir = new File("C:/Users/eduardo/Pictures/ORDENADOR DE MESA/cadiz/cadiz1");
+	//static final File dir = new File("C:/Users/eduardo/Pictures/ORDENADOR DE MESA/cadiz/cadiz1");
 	private PhotoList<Photo> lista = new PhotoList<Photo>();
 	private Vector<LagThumbnail> data = new Vector<LagThumbnail>();
 	private Vector<String> columnNames = new Vector<String>();
 	private ArgazkiakPantailaratu ap;
+	private FileChooser fC;
 	
 	public MyTableModel(){
 		kargatu();
@@ -27,7 +28,9 @@ public class MyTableModel extends AbstractTableModel {
 	
 	private void kargatu(){
 		hasieratuZutabeIzenak();
-		lista = ap.irudiakItzuli();
+		//lista = ap.irudiakItzuli();
+		fC= new FileChooser();
+		lista= fC.irudiakLortu();
             for ( Photo f : lista) {
             	//System.out.println("image: " + f.getName());
             	
@@ -37,7 +40,8 @@ public class MyTableModel extends AbstractTableModel {
             	Image argazkia = img.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);
             	ImageIcon ikonoBerria = new ImageIcon(argazkia);
             	Date d = (Date) f.getLastUpdate();
-            	data.add(new LagThumbnail(ikonoBerria, f.getTitle() ,d,  false));
+            	String karpetaIzena= "";
+            	data.add(new LagThumbnail(ikonoBerria, f.getTitle() ,d,  false, karpetaIzena));
             }
         }
 	
@@ -46,6 +50,7 @@ public class MyTableModel extends AbstractTableModel {
 		columnNames.add("Izena");
 		columnNames.add("Data");
 		columnNames.add("Deskargatua?");
+		columnNames.add("Karpeta");
 	}
 	
 	@Override
@@ -81,6 +86,9 @@ public class MyTableModel extends AbstractTableModel {
 			break;
 		case 3:
 			o = Boolean.class;
+			break;
+		case 4:
+			o = String.class;
 			break;
 		default:
 			break;

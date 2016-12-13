@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.Properties;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,10 +15,10 @@ public class ArgazkienTaula extends JFrame {
 	JButton Igo = new JButton("Igo");
 	MyTableModel modeloa;
 
-	public ArgazkienTaula() throws IOException {
+	public ArgazkienTaula(Properties properties) throws IOException {
 		super("Zure argazkien datuak eta igo nahi badituzu:");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		JTable table = new JTable(new MyTableModel());
+		JTable table = new JTable(new MyTableModel(properties));
 		table.setRowHeight(75);
 		JScrollPane scrollPane = new JScrollPane(table);
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
@@ -30,10 +31,6 @@ public class ArgazkienTaula extends JFrame {
 				modeloa = (MyTableModel) table.getModel();
 				modeloa.igo();
 			}});
-	}
-	
-	public static void main(String[] args) throws IOException {
-		new ArgazkienTaula();
 	}
 }
 

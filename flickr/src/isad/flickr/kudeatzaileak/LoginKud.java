@@ -63,16 +63,14 @@ public class LoginKud {
 	        System.out.println("Ondo konektatuta");
 
 	        Auth auth = authInterface.checkToken(requestToken);
-
-	        // This token can be used until the user revokes it.
+	        
 	        properties.setProperty("token", requestToken.getToken());
 	        properties.setProperty("tokensecret", requestToken.getSecret());
 	        properties.setProperty("nsid", auth.getUser().getId());
 	        properties.setProperty("displayname", auth.getUser().getRealName());
 	        properties.setProperty("username", auth.getUser().getUsername());
-	        System.out.println("Permission: " + auth.getPermission().getType());
 	        }
-	        else properties= new Properties();
+	        else properties= null;
 	        return properties;
 	}
 }

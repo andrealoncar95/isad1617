@@ -85,6 +85,9 @@ public class LoginInterface extends JPanel{
 				if (properties == null){
 					System.out.println("fdsfdfdsgdg");
 				}
+				AukerakUI aU;
+				aU = new AukerakUI(properties);
+				aU.setVisible(true);
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -92,11 +95,6 @@ public class LoginInterface extends JPanel{
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-				
-			
-			
-			
-			
 				
 	}});
 

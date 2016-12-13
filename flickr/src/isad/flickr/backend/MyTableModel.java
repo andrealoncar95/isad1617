@@ -25,26 +25,17 @@ public class MyTableModel extends AbstractTableModel {
 	private Vector<String> columnNames = new Vector<String>();
 	private FileChooser fC;
 	private String erabiltzailea;
-	private Properties properties = null;
 	
 	
-	public MyTableModel() throws IOException{
-		kargatu();
+	public MyTableModel(Properties properties) throws IOException{
+		kargatu(properties);
 	}
 	
-	private void kargatu() throws IOException{
+	private void kargatu(Properties properties) throws IOException{
 		hasieratuZutabeIzenak();
 		fC= new FileChooser();
 		File dir= fC.getDirektorioa();
-		InputStream in = null;
-		try {
-			in = getClass().getResourceAsStream("/setup.properties");
-			properties = new Properties();
-
-			properties.load(in);
-		} finally {
-			IOUtilities.close(in);
-		}
+		
 		erabiltzailea = properties.getProperty("username");
 		
         if (dir.isDirectory()) { // make sure it's a directory
@@ -124,15 +115,6 @@ public class MyTableModel extends AbstractTableModel {
 	
 	public void setValueAt (Object value, int i, int j){
 			data.get(i).insertElementAt(value, j);
-	}
-	
-	public static void main(String[] args) throws IOException {
-		MyTableModel taula = new MyTableModel();
-		System.out.println("Zutabeak:" + taula.getColumnCount());
-		System.out.println("Lerroak: " + taula.getRowCount());
-		System.out.println("(2,2) elementuaren balioa:" + taula.getValueAt(2, 2));
-		System.out.println("Lehenengo zutabearen izena:" + taula.getColumnName(0));
-	
 	}
 
 	public void igo() {

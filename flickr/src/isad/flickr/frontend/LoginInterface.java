@@ -6,25 +6,28 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.Properties;
 import java.util.stream.Stream;
 
 //import java.awt.BorderLayout;
 //import java.awt.Dimension;
 import javax.swing.*;
 
+import com.flickr4java.flickr.FlickrException;
+
 import isad.flickr.kudeatzaileak.DBkud;
-import isad.flickr.kudeatzaileak.LoginDB;
+import isad.flickr.kudeatzaileak.LoginKud;
 
 public class LoginInterface extends JPanel{
-	
+	private Properties properties = null;
 	JPanel nagusia = new JPanel(new SpringLayout());
 	//JPanel nagusiaSur = new JPanel(new BorderLayout());
 	
 	
-	private JTextField erabiltzailea, pasahitza;
+	private JTextField apiKey, secret;
 	
-	private JLabel erabiltzailea1 = new JLabel();
-	private JLabel pasahitza1 = new JLabel();
+	private JLabel apiKey1 = new JLabel();
+	private JLabel secret1 = new JLabel();
 	
 	private JLabel argazkia;
 	
@@ -33,24 +36,24 @@ public class LoginInterface extends JPanel{
 	public LoginInterface() throws IOException {
 		super(new BorderLayout());
 		
-		erabiltzailea = new JTextField(15);
-		pasahitza = new JPasswordField(15);
+		apiKey = new JTextField(15);
+		secret = new JPasswordField(15);
 		login = new JButton();
-		erabiltzailea1 = new JLabel();
-		pasahitza1 = new JLabel();
+		apiKey1 = new JLabel();
+		secret1 = new JLabel();
 		
 		
 		login.setText("LOGIN");
-		pasahitza1.setText("Pasahitza");
-		erabiltzailea1.setText("Erabiltzailea");
+		secret1.setText("Secret");
+		apiKey1.setText("Api key");
 		
 		
 		add(nagusia, BorderLayout.SOUTH);
 		
-		nagusia.add(erabiltzailea1);
-		nagusia.add(erabiltzailea);
-		nagusia.add(pasahitza1);
-		nagusia.add(pasahitza);
+		nagusia.add(apiKey1);
+		nagusia.add(apiKey);
+		nagusia.add(secret1);
+		nagusia.add(secret);
 		nagusia.add(new JLabel(" "));
 		nagusia.add(login);
 		
@@ -68,6 +71,7 @@ public class LoginInterface extends JPanel{
 		argazkia.setPreferredSize(new Dimension(177, 122));
 		add(argazkia, BorderLayout.CENTER);
 		setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
+		loginActionListener();
 	}
 	
 	private void loginActionListener() {
@@ -76,10 +80,18 @@ public class LoginInterface extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
-			if (!LoginDB.instantzia.konektatu(erabiltzailea.getText(), pasahitza.getText()).equals(null)) {
-				
+			try {
+				System.out.println(apiKey.getText());
+				properties = LoginKud.instantzia.konektatu(apiKey.getText(), secret.getText());
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (FlickrException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			else {}
+				
+			
 			
 			
 			

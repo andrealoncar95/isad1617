@@ -76,15 +76,6 @@ public class ArgazkiKud {
 			        } finally {
 			            IOUtilities.close(in);
 			}
-				/*Uploader uploader = new Uploader(apiKey, secretKey);
-				UploadMetaData uploadMetaData = new UploadMetaData();
-				uploadMetaData.setTitle(izena);
-
-				Flickr flickr;
-				Auth auth = flickr.getAuthInterface().checkToken(token);
-				System.out.println("auth: " + auth);
-				RequestContext.getRequestContext().setAuth(auth);
-				uploader.upload(data.get(kont).image, uploadMetaData);*/
 			}
 			kont++;
 		}

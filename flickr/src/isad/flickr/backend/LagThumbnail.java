@@ -6,14 +6,13 @@ import javax.swing.ImageIcon;
 
 public class LagThumbnail {
 
-	ImageIcon image;
-	String izena;
-	Date noizAtara;
-	Boolean igo;
-	String karpeta;
+	public ImageIcon image;
+	public String izena;
+	public Date noizAtara;
+	public Boolean igo;
+	public String karpeta;
 	
 	public LagThumbnail(ImageIcon image, String izena, Date noizAtara, Boolean igo, String karpeta) {
-			super();
 			this.izena = izena;
 			this.image = image;
 			this.noizAtara = noizAtara;

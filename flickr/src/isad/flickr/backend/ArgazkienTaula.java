@@ -3,6 +3,7 @@ package isad.flickr.backend;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,8 +14,8 @@ public class ArgazkienTaula extends JFrame {
 	JButton Igo = new JButton("Igo");
 	MyTableModel modeloa;
 
-	public ArgazkienTaula() {
-		super("Nire taula grafikoa");
+	public ArgazkienTaula() throws IOException {
+		super("Zure argazkien datuak eta igo nahi badituzu:");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JTable table = new JTable(new MyTableModel());
 		table.setRowHeight(75);
@@ -27,10 +28,11 @@ public class ArgazkienTaula extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				modeloa = (MyTableModel) table.getModel();
+				modeloa.igo();
 			}});
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		new ArgazkienTaula();
 	}
 }

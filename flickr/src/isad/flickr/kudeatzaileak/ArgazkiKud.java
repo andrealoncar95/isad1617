@@ -1,8 +1,17 @@
 package isad.flickr.kudeatzaileak;
 
 
+import java.io.File;
 import java.util.Date;
 import java.util.List;
+
+import org.scribe.model.Token;
+
+import com.flickr4java.flickr.Flickr;
+import com.flickr4java.flickr.RequestContext;
+import com.flickr4java.flickr.auth.Auth;
+import com.flickr4java.flickr.uploader.UploadMetaData;
+import com.flickr4java.flickr.uploader.Uploader;
 
 import isad.flickr.backend.LagThumbnail;
 
@@ -30,6 +39,17 @@ public class ArgazkiKud {
 				String karpeta = data.get(kont).karpeta;			
 				
 				dbkud.execSQL("INSERT INTO Argazkia (erabiltzailea, izena, data, igo, karpeta)  values ('" + erabiltzailea  + "', '"+ izena + "', '"+ noiz + "', "+ igo +", '"+  karpeta + "')");
+			
+				
+				/*Uploader uploader = new Uploader(apiKey, secretKey);
+				UploadMetaData uploadMetaData = new UploadMetaData();
+				uploadMetaData.setTitle(izena);
+
+				Flickr flickr;
+				Auth auth = flickr.getAuthInterface().checkToken(token);
+				System.out.println("auth: " + auth);
+				RequestContext.getRequestContext().setAuth(auth);
+				uploader.upload(data.get(kont).image, uploadMetaData);*/
 			}
 			kont++;
 		}

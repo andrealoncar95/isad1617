@@ -46,6 +46,7 @@ public class MyTableModel extends AbstractTableModel {
 			IOUtilities.close(in);
 		}
 		erabiltzailea = properties.getProperty("username");
+		
         if (dir.isDirectory()) { // make sure it's a directory
             for (final File f : dir.listFiles()) {
             	//System.out.println("image: " + f.getName());

@@ -21,6 +21,7 @@ public class ArgazkiKud {
 		int kont = 0;
 		while (kont < data.size()) {
 			if (data.get(kont).igo){
+
 				String izena = data.get(kont).izena;
 				Date noiz = data.get(kont).noizAtara;
 				Boolean igota = data.get(kont).igo;
@@ -30,6 +31,7 @@ public class ArgazkiKud {
 				
 				dbkud.execSQL("INSERT INTO Argazkia (erabiltzailea, izena, data, igo, karpeta)  values ('" + erabiltzailea  + "', '"+ izena + "', '"+ noiz + "', "+ igo +", '"+  karpeta + "')");
 			}
+			kont++;
 		}
 		
 		

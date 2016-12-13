@@ -20,7 +20,6 @@ public class FileChooser extends JFrame {
 	private JFileChooser file= new JFileChooser();
 
 	public FileChooser() {
-
 		FileNameExtensionFilter filtroJPG = new FileNameExtensionFilter("*.JPG", "jpg");
 		FileNameExtensionFilter filtroGIF = new FileNameExtensionFilter("*.GIF", "gif");
 		FileNameExtensionFilter filtroPNG = new FileNameExtensionFilter("*.PNG", "png");
@@ -31,8 +30,6 @@ public class FileChooser extends JFrame {
 		file.showOpenDialog(this);
 		dir=file.getSelectedFile();
 		getContentPane().add(file);
-		
-
 	}
 
 	

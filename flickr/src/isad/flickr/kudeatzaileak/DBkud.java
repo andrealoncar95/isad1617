@@ -24,6 +24,7 @@ public class DBkud {
 
 			System.out.println("Database connection established");
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.err.println("Cannot connect to database server");
 		}
 	}

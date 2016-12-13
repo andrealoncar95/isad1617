@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Date;
@@ -15,6 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.table.AbstractTableModel;
 
+import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.util.IOUtilities;
 
 import isad.flickr.kudeatzaileak.ArgazkiKud;
@@ -117,7 +119,7 @@ public class MyTableModel extends AbstractTableModel {
 			data.get(i).insertElementAt(value, j);
 	}
 
-	public void igo() {
+	public void igo() throws FileNotFoundException, FlickrException {
 		ArgazkiKud.instantzia.argazkiakIgo(data, erabiltzailea);
 		
 	}

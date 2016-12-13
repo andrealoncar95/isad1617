@@ -3,6 +3,7 @@ package isad.flickr.backend;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -10,6 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+
+import com.flickr4java.flickr.FlickrException;
 
 public class ArgazkienTaula extends JFrame {
 	JButton Igo = new JButton("Igo");
@@ -29,7 +32,15 @@ public class ArgazkienTaula extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				modeloa = (MyTableModel) table.getModel();
-				modeloa.igo();
+				try {
+					modeloa.igo();
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (FlickrException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}});
 	}
 }

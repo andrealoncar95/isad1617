@@ -47,6 +47,7 @@ public class LoginKud {
 	        Scanner scanner = new Scanner(System.in);
 
 	        Token token = authInterface.getRequestToken();
+	        if (token != null){
 	        System.out.println("token: " + token);
 
 	        String url = authInterface.getAuthorizationUrl(token, Permission.DELETE);
@@ -70,6 +71,8 @@ public class LoginKud {
 	        properties.setProperty("displayname", auth.getUser().getRealName());
 	        properties.setProperty("username", auth.getUser().getUsername());
 	        System.out.println("Permission: " + auth.getPermission().getType());
+	        }
+	        else properties= new Properties();
 	        return properties;
 	}
 }

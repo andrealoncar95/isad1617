@@ -81,8 +81,10 @@ public class LoginInterface extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 			
 			try {
-				System.out.println(apiKey.getText());
 				properties = LoginKud.instantzia.konektatu(apiKey.getText(), secret.getText());
+				if (properties == null){
+					System.out.println("fdsfdfdsgdg");
+				}
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

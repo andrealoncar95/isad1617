@@ -52,7 +52,9 @@ public class ArgazkiKud {
 				
 				dbkud.execSQL("INSERT INTO Argazkia (erabiltzailea, izena, data, igo, karpeta)  values ('" + erabiltzailea  + "', '"+ izena + "', '"+ noiz + "', "+ igo +", '"+  karpeta + "')");
 				String patha = data.get(kont).image.getDescription();
+				
 				File imageFile = new File(patha);
+				System.out.println(patha);
 			    InputStream in = null;
 			    Uploader uploader = f.getUploader();
 			    PhotosInterface pint = f.getPhotosInterface();

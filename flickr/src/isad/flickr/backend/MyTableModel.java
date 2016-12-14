@@ -46,6 +46,7 @@ public class MyTableModel extends AbstractTableModel {
             	
                 ImageIcon image = new ImageIcon(dir + File.separator + f.getName(), dir + File.separator + f.getName());
                //komentario
+                if (image != null){
             	Image img = image.getImage();
             	Image argazkia = img.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);
             	ImageIcon ikonoBerria = new ImageIcon(argazkia);
@@ -54,6 +55,7 @@ public class MyTableModel extends AbstractTableModel {
             	String direk = dir.getAbsolutePath();
             	direk = direk.split("\\\\")[direk.split("\\\\").length -1];
             	data.add(new LagThumbnail(ikonoBerria, f.getName() ,d,  false, direk));
+                }
             }
         }
 	}

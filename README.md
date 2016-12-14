@@ -1,4 +1,4 @@
-# isad1617
+# Flickr Togorri aplikazioa
 Gure proiektuaren helburua, Flickr-era konektatzea eta ordenagailuko argazkiak era eraginkor eta eroso batean igotzea da.
 Igotzerakoan, zein bildumatan sartu eta etiketak, deskripzioa eta titulua idazteko aukera emango du aplikazioak.
 Proiektua erabiltzeko hurrengo liburutegiak beharrezkoak dira:

@@ -9,4 +9,4 @@ Proiektua erabiltzeko hurrengo liburutegiak beharrezkoak dira:
 -scribe-1.3.6.jar
 -sqlite-jdbc-3.15.1.jar
 flickr-eko kontua beharrezkoa da gure proiektua erabiltzeko, flickr-eko konturik ez baduzu, sortu.
-Aplikazioa irekitzerakoan Flickr-eko api eta secret-ak sartzea beharrezkoa da, horretarako, zure kontuan sartu, "compartiendo y extendiendo" menuan sakatu eta "tienes una clave" estekan sakatzerakoan, zure proiektua aukeratu eta han Admin-> "view" botoian agertuko da
+Aplikazioa irekitzerakoan Flickr-eko api eta secret-ak sartzea beharrezkoa da, horretarako, zure kontuan sartu, "compartiendo y extendiendo" menuan sakatu eta "tienes una clave" estekan sakatzerakoan, zure proiektua aukeratu eta han Admin-> "view" botoian agertuko da. Login botoia sakatzerakoan, 

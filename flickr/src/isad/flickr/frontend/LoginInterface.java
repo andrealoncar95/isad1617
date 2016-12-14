@@ -60,12 +60,9 @@ public class LoginInterface extends JPanel{
 		SpringUtilities.makeCompactGrid(nagusia, 3, 2, 10, 10, 2, 2);
 		
 		//Set up the picture label.
+				ImageIcon argazkia2 = new ImageIcon("images/logo-flickr.gif");
+		Image img = argazkia2.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT);
 		
-		ImageIcon argazkia2 = new ImageIcon("flickrLogo.gif");
-		Image img = argazkia2.getImage();
-		
-		Dimension pantaila = Toolkit.getDefaultToolkit().getScreenSize();
-    	img = img.getScaledInstance((int)pantaila.getWidth() / 2, (int)pantaila.getHeight() / 2, Image.SCALE_SMOOTH);
     	ImageIcon ikonoBerria = new ImageIcon(img);
     	argazkia = new JLabel(ikonoBerria);
 		argazkia.setPreferredSize(new Dimension(177, 122));

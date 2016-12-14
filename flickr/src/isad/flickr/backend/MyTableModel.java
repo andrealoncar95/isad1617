@@ -19,6 +19,7 @@ import javax.swing.table.AbstractTableModel;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.util.IOUtilities;
 
+import isad.flickr.frontend.MezuaUI;
 import isad.flickr.kudeatzaileak.ArgazkiKud;
 
 public class MyTableModel extends AbstractTableModel {
@@ -43,10 +44,8 @@ public class MyTableModel extends AbstractTableModel {
         if (dir.isDirectory()) { // make sure it's a directory
             for (final File f : dir.listFiles()) {
             	//System.out.println("image: " + f.getName());
-            	
+            	if ((f.getAbsolutePath().contains(".jpg")) || (f.getAbsolutePath().contains(".gif")) || (f.getAbsolutePath().contains(".png")) || (f.getAbsolutePath().contains(".bmp"))){
                 ImageIcon image = new ImageIcon(dir + File.separator + f.getName(), dir + File.separator + f.getName());
-               //komentario
-                if (image != null){
             	Image img = image.getImage();
             	Image argazkia = img.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);
             	ImageIcon ikonoBerria = new ImageIcon(argazkia);
@@ -56,6 +55,7 @@ public class MyTableModel extends AbstractTableModel {
             	direk = direk.split("\\\\")[direk.split("\\\\").length -1];
             	data.add(new LagThumbnail(ikonoBerria, f.getName() ,d,  false, direk));
                 }
+                if (data.size() == 0) new  MezuaUI();
             }
         }
 	}

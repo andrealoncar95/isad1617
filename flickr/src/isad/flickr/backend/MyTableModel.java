@@ -44,8 +44,8 @@ public class MyTableModel extends AbstractTableModel {
         if (dir.isDirectory()) { // make sure it's a directory
             for (final File f : dir.listFiles()) {
             	
-            	if ((f.getAbsolutePath().contains(".jpg")) || (f.getAbsolutePath().contains(".gif")) || (f.getAbsolutePath().contains(".png")) || (f.getAbsolutePath().contains(".bmp"))){
-            	System.out.println("image: " + f.getName());
+            	if ((f.getAbsolutePath().contains(".jpg")) || (f.getAbsolutePath().contains(".gif")) || (f.getAbsolutePath().contains(".png")) || (f.getAbsolutePath().contains(".bmp")) || (f.getAbsolutePath().contains(".JPG")) || (f.getAbsolutePath().contains(".GIF")) || (f.getAbsolutePath().contains(".PNG")) || (f.getAbsolutePath().contains(".BMP"))){
+            	//System.out.println("image: " + f.getName());
             	ImageIcon image = new ImageIcon(dir + File.separator + f.getName(), dir + File.separator + f.getName());
             	Image img = image.getImage();
             	Image argazkia = img.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);

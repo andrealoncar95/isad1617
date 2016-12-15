@@ -51,7 +51,7 @@ public class ArgazkiKud {
 				String karpeta = data.get(kont).karpeta;			
 				
 				dbkud.execSQL("INSERT INTO Argazkia (erabiltzailea, izena, data, igo, karpeta)  values ('" + erabiltzailea  + "', '"+ izena + "', '"+ noiz + "', "+ igo +", '"+  karpeta + "')");
-				String patha = data.get(kont).image.getDescription();
+				String patha = data.get(kont).karpeta;
 				
 				File imageFile = new File(patha);
 				System.out.println(patha);

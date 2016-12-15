@@ -53,7 +53,7 @@ public class MyTableModel extends AbstractTableModel {
             	Long ms = f.lastModified();
             	Date d = new Date(ms);
             	String direk = dir.getAbsolutePath();
-            	direk = direk.split("\\\\")[direk.split("\\\\").length -1];
+            	//direk = direk.split("\\\\")[direk.split("\\\\").length -1];
             	data.add(new LagThumbnail(ikonoBerria, f.getName() ,d,  false, direk));
                 }
             }

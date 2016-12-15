@@ -33,10 +33,12 @@ public class ArgazkienTaula extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				modeloa = (MyTableModel) table.getModel();
 				try {
-					modeloa.igo();
-				} catch (FileNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					try {
+						modeloa.igo();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				} catch (FlickrException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

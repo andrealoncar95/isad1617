@@ -4,9 +4,11 @@ package isad.flickr.kudeatzaileak;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
 import org.scribe.model.Token;
 
@@ -15,6 +17,7 @@ import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.REST;
 import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.auth.Auth;
+import com.flickr4java.flickr.auth.AuthInterface;
 import com.flickr4java.flickr.photos.PhotosInterface;
 import com.flickr4java.flickr.uploader.UploadMetaData;
 import com.flickr4java.flickr.uploader.Uploader;
@@ -26,7 +29,7 @@ import isad.flickr.backend.LagThumbnail;
 public class ArgazkiKud {
 	public static ArgazkiKud instantzia = new ArgazkiKud();
 	static Flickr f;
-
+	Properties properties;
 	REST rest;
 
 	RequestContext requestContext;
@@ -37,9 +40,19 @@ public class ArgazkiKud {
 
 
 
-	public void argazkiakIgo(List<LagThumbnail> data, String erabiltzailea) throws FileNotFoundException, FlickrException {
+	public void argazkiakIgo(List<LagThumbnail> data, String erabiltzailea) throws FlickrException, IOException {
 		DBkud dbkud = DBkud.getInstantzia();
 		int kont = 0;
+		 InputStream in1 = null;
+	        try {
+	            in1 = getClass().getResourceAsStream("/setup.properties");
+	            properties = new Properties();
+	            properties.load(in1);
+	        } finally {
+	            IOUtilities.close(in1);
+	        }
+		f = new Flickr(properties.getProperty("apiKey"), properties.getProperty("secret"), new REST());
+	    Flickr.debugStream = false;
 		while (kont < data.size()) {
 			if (data.get(kont).igo){
 

@@ -122,7 +122,7 @@ public class MyTableModel extends AbstractTableModel {
 			data.get(i).insertElementAt(value, j);
 	}
 
-	public void igo() throws FileNotFoundException, FlickrException {
+	public void igo() throws FlickrException, IOException {
 		ArgazkiKud.instantzia.argazkiakIgo(data, erabiltzailea);
 		
 	}

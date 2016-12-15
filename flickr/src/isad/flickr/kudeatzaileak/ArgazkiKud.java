@@ -64,7 +64,7 @@ public class ArgazkiKud {
 				String karpeta = data.get(kont).karpeta;			
 				
 				dbkud.execSQL("INSERT INTO Argazkia (erabiltzailea, izena, data, igo, karpeta)  values ('" + erabiltzailea  + "', '"+ izena + "', '"+ noiz + "', "+ igo +", '"+  karpeta + "')");
-				String patha = data.get(kont).karpeta;
+				String patha = data.get(kont).karpeta + File.separator +data.get(kont).izena;
 				
 				File imageFile = new File(patha);
 				System.out.println(patha);
@@ -75,7 +75,7 @@ public class ArgazkiKud {
 			        try {
 			            in = new FileInputStream(imageFile);
 			            UploadMetaData metaData = buildPrivatePhotoMetadata();
-			            metaData.setPublicFlag(false);
+			            metaData.setPublicFlag(true);
 			            metaData.setTitle(izena);
 			            String photoId = uploader.upload(in, metaData);
 			            try {

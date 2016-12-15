@@ -38,6 +38,7 @@ public class LoginKud {
 	        } finally {
 	            IOUtilities.close(in);
 	        }
+	        if (properties.getProperty("token") == null){
 	        properties.setProperty("apiKey", api);
 	        properties.setProperty("secret", secret);
 	        Flickr flickr = new Flickr(properties.getProperty("apiKey"), properties.getProperty("secret"), new REST());
@@ -47,7 +48,6 @@ public class LoginKud {
 	        Scanner scanner = new Scanner(System.in);
 
 	        Token token = authInterface.getRequestToken();
-	        if (token != null){
 	        System.out.println("token: " + token);
 
 	        String url = authInterface.getAuthorizationUrl(token, Permission.DELETE);
@@ -70,7 +70,6 @@ public class LoginKud {
 	        properties.setProperty("displayname", auth.getUser().getRealName());
 	        properties.setProperty("username", auth.getUser().getUsername());
 	        }
-	        else properties= null;
 	        return properties;
 	}
 }

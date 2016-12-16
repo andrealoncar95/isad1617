@@ -13,13 +13,11 @@ import org.scribe.model.Verifier;
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.REST;
+import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.auth.Auth;
 import com.flickr4java.flickr.auth.AuthInterface;
 import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.util.IOUtilities;
-
-
-
 
 
 public class LoginKud {
@@ -69,6 +67,21 @@ public class LoginKud {
 	        properties.setProperty("nsid", auth.getUser().getId());
 	        properties.setProperty("displayname", auth.getUser().getRealName());
 	        properties.setProperty("username", auth.getUser().getUsername());
+	        } else {
+	        	REST rest = new REST();
+	            rest.setHost(properties.getProperty("host"));
+	            
+	        	ArgazkiKud.f = new Flickr(properties.getProperty("apiKey"), properties.getProperty("secret"), rest);
+	        		        	
+	            Auth auth = new Auth();
+	            auth.setPermission(Permission.READ);
+	            auth.setToken(properties.getProperty("token"));
+	            auth.setTokenSecret(properties.getProperty("tokensecret"));
+
+	            RequestContext requestContext = RequestContext.getRequestContext();
+	            requestContext.setAuth(auth);
+	            ArgazkiKud.f.setAuth(auth);
+	        		
 	        }
 	        return properties;
 	}

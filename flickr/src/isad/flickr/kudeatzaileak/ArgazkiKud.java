@@ -29,8 +29,9 @@ import isad.flickr.backend.LagThumbnail;
 public class ArgazkiKud {
 	public static ArgazkiKud instantzia = new ArgazkiKud();
 	static Flickr f;
-	Properties properties;
-	REST rest;
+	
+	//Properties properties;
+	//REST rest;
 
 	RequestContext requestContext;
 	
@@ -41,17 +42,17 @@ public class ArgazkiKud {
 
 
 	public void argazkiakIgo(List<LagThumbnail> data, String erabiltzailea) throws FlickrException, IOException {
-		DBkud dbkud = DBkud.getInstantzia();
+		//DBkud dbkud = DBkud.getInstantzia();
 		int kont = 0;
-		 InputStream in1 = null;
+		/* InputStream in1 = null;
 	        try {
 	            in1 = getClass().getResourceAsStream("/setup.properties");
 	            properties = new Properties();
 	            properties.load(in1);
 	        } finally {
 	            IOUtilities.close(in1);
-	        }
-		f = new Flickr(properties.getProperty("apiKey"), properties.getProperty("secret"), new REST());
+	        }*/
+		//f = new Flickr(properties.getProperty("apiKey"), properties.getProperty("secret"), new REST());
 	    Flickr.debugStream = false;
 		while (kont < data.size()) {
 			if (data.get(kont).igo){
@@ -63,8 +64,8 @@ public class ArgazkiKud {
 				if (igota) igo = 1;
 				String karpeta = data.get(kont).karpeta;			
 				
-				dbkud.execSQL("INSERT INTO Argazkia (erabiltzailea, izena, data, igo, karpeta)  values ('" + erabiltzailea  + "', '"+ izena + "', '"+ noiz + "', "+ igo +", '"+  karpeta + "')");
-				String patha = data.get(kont).karpeta + File.separator +data.get(kont).izena;
+				//dbkud.execSQL("INSERT INTO Argazkia (erabiltzailea, izena, data, igo, karpeta)  values ('" + erabiltzailea  + "', '"+ izena + "', '"+ noiz + "', "+ igo +", '"+  karpeta + "')");
+				String patha = karpeta + File.separator + izena;
 				
 				File imageFile = new File(patha);
 				System.out.println(patha);
@@ -78,7 +79,7 @@ public class ArgazkiKud {
 			            metaData.setPublicFlag(true);
 			            metaData.setTitle(izena);
 			            String photoId = uploader.upload(in, metaData);
-			            try {
+			          /*  try {
 			                pint.delete(photoId);
 			            } catch (FlickrException e) {
 			                // Ignore if user doesn't have delete permissions
@@ -87,7 +88,8 @@ public class ArgazkiKud {
 			                    throw e;
 			                }
 			            }
-
+*/
+			            System.out.println("photoId:" + photoId + " igota!");
 			        } finally {
 			            IOUtilities.close(in);
 			}

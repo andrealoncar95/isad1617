@@ -21,9 +21,9 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 
-public class MezuaUI extends JFrame {
-	public MezuaUI() {
-		super("aukeratu karpeta egoki bat!");
+public class MezuaEzDago extends JFrame {
+	public MezuaEzDago() {
+		super("Bilatzen ari zaren argazkia ez dago oraindik igota");
 		getContentPane().setLayout(new BorderLayout());
 		((JPanel)getContentPane()).setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		

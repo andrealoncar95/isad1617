@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import isad.flickr.backend.ArgazkienTaula;
+import isad.flickr.kudeatzaileak.BilatuKud;
 
 public class AukerakUI extends JFrame {
 
@@ -48,7 +49,7 @@ public class AukerakUI extends JFrame {
 				ArgazkienTaula aT = null;
 				try {
 					aT = new ArgazkienTaula(properties);
-				} catch (IOException e1) {
+				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
@@ -56,6 +57,14 @@ public class AukerakUI extends JFrame {
 				
 			}
 		});
+		argazkiakBilatu.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(BilatuKud.instantzia.bilatuArgazkia()){
+					new MezuaBadago();
+				}
+				else new MezuaEzDago();
+			}});	
 	}
 
 

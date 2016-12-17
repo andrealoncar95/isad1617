@@ -53,7 +53,6 @@ public class ArgazkiKud {
 	            IOUtilities.close(in1);
 	        }*/
 		//f = new Flickr(properties.getProperty("apiKey"), properties.getProperty("secret"), new REST());
-	    Flickr.debugStream = false;
 		while (kont < data.size()) {
 			if (data.get(kont).igo){
 
@@ -70,13 +69,13 @@ public class ArgazkiKud {
 				File imageFile = new File(patha);
 				System.out.println(patha);
 			    InputStream in = null;
-			    Uploader uploader = f.getUploader();
-			    PhotosInterface pint = f.getPhotosInterface();
+			    Uploader uploader = ArgazkiKud.f.getUploader();
+			    PhotosInterface pint = ArgazkiKud.f.getPhotosInterface();
 
 			        try {
 			            in = new FileInputStream(imageFile);
 			            UploadMetaData metaData = buildPrivatePhotoMetadata();
-			            metaData.setPublicFlag(true);
+			            metaData.setPublicFlag(false);
 			            metaData.setTitle(izena);
 			            String photoId = uploader.upload(in, metaData);
 			          /*  try {

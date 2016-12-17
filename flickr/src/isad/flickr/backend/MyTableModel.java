@@ -4,9 +4,11 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.MessageDigest;
 import java.sql.Date;
 import java.util.List;
 import java.util.Properties;
@@ -30,11 +32,11 @@ public class MyTableModel extends AbstractTableModel {
 	private String erabiltzailea;
 	
 	
-	public MyTableModel(Properties properties) throws IOException{
+	public MyTableModel(Properties properties) throws Exception{
 		kargatu(properties);
 	}
 	
-	private void kargatu(Properties properties) throws IOException{
+	private void kargatu(Properties properties) throws Exception{
 		hasieratuZutabeIzenak();
 		fC= new FileChooser();
 		File dir= fC.getDirektorioa();
@@ -43,7 +45,7 @@ public class MyTableModel extends AbstractTableModel {
 		
         if (dir.isDirectory()) { // make sure it's a directory
             for (final File f : dir.listFiles()) {
-            	
+            	            	
             	if ((f.getAbsolutePath().contains(".jpg")) || (f.getAbsolutePath().contains(".gif")) || (f.getAbsolutePath().contains(".png")) || (f.getAbsolutePath().contains(".bmp")) || (f.getAbsolutePath().contains(".JPG")) || (f.getAbsolutePath().contains(".GIF")) || (f.getAbsolutePath().contains(".PNG")) || (f.getAbsolutePath().contains(".BMP"))){
             	//System.out.println("image: " + f.getName());
             	ImageIcon image = new ImageIcon(dir + File.separator + f.getName(), dir + File.separator + f.getName());
@@ -53,6 +55,10 @@ public class MyTableModel extends AbstractTableModel {
             	Long ms = f.lastModified();
             	Date d = new Date(ms);
             	String direk = dir.getAbsolutePath();
+            	
+            	String kk = getMD5Checksum(direk + File.separator + f.getName());
+            	System.out.println(kk);
+            	
             	//direk = direk.split("\\\\")[direk.split("\\\\").length -1];
             	data.add(new LagThumbnail(ikonoBerria, f.getName() ,d,  false, direk));
                 }
@@ -126,6 +132,34 @@ public class MyTableModel extends AbstractTableModel {
 		ArgazkiKud.instantzia.argazkiakIgo(data, erabiltzailea);
 		
 	}
+	
+	public static byte[] createChecksum(String filename) throws Exception {
+	       InputStream fis =  new FileInputStream(filename);
+
+	       byte[] buffer = new byte[1024];
+	       MessageDigest complete = MessageDigest.getInstance("MD5");
+	       int numRead;
+
+	       do {
+	           numRead = fis.read(buffer);
+	           if (numRead > 0) {
+	               complete.update(buffer, 0, numRead);
+	           }
+	       } while (numRead != -1);
+
+	       fis.close();
+	       return complete.digest();
+	   }
+	
+	public static String getMD5Checksum(String filename) throws Exception {
+	       byte[] b = createChecksum(filename);
+	       String result = "";
+
+	       for (int i=0; i < b.length; i++) {
+	           result += Integer.toString( ( b[i] & 0xff ) + 0x100, 16).substring( 1 );
+	       }
+	       return result;
+	   }
 	
 
 }

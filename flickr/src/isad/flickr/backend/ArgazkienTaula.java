@@ -18,7 +18,7 @@ public class ArgazkienTaula extends JFrame {
 	JButton Igo = new JButton("Igo");
 	MyTableModel modeloa;
 
-	public ArgazkienTaula(Properties properties) throws IOException {
+	public ArgazkienTaula(Properties properties) throws Exception {
 		super("Zure argazkien datuak eta igo nahi badituzu:");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JTable table = new JTable(new MyTableModel(properties));

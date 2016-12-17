@@ -41,7 +41,7 @@ public class LoginKud {
 	        properties.setProperty("secret", secret);
 	        Flickr flickr = new Flickr(properties.getProperty("apiKey"), properties.getProperty("secret"), new REST());
 	        Flickr.debugStream = false;
-	        AuthInterface authInterface = flickr.getAuthInterface();
+	        AuthInterface authInterface = ArgazkiKud.f.getAuthInterface();
 
 	        Scanner scanner = new Scanner(System.in);
 

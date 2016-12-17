@@ -23,6 +23,7 @@ import com.flickr4java.flickr.util.IOUtilities;
 
 import isad.flickr.frontend.MezuaUI;
 import isad.flickr.kudeatzaileak.ArgazkiKud;
+import isad.flickr.kudeatzaileak.BilatuKud;
 
 public class MyTableModel extends AbstractTableModel {
 	
@@ -30,6 +31,7 @@ public class MyTableModel extends AbstractTableModel {
 	private Vector<String> columnNames = new Vector<String>();
 	private FileChooser fC;
 	private String erabiltzailea;
+	private String md5;
 	
 	
 	public MyTableModel(Properties properties) throws Exception{
@@ -56,8 +58,8 @@ public class MyTableModel extends AbstractTableModel {
             	Date d = new Date(ms);
             	String direk = dir.getAbsolutePath();
             	
-            	String kk = getMD5Checksum(direk + File.separator + f.getName());
-            	System.out.println(kk);
+            	md5= getMD5Checksum(direk + File.separator + f.getName());
+            	
             	
             	//direk = direk.split("\\\\")[direk.split("\\\\").length -1];
             	data.add(new LagThumbnail(ikonoBerria, f.getName() ,d,  false, direk));
@@ -160,6 +162,10 @@ public class MyTableModel extends AbstractTableModel {
 	       }
 	       return result;
 	   }
+
+	public boolean bilatuArgazkia(Integer ilara) {
+		return BilatuKud.instantzia.bilatuArgazkia(data, ilara, erabiltzailea, md5);
+	}
 	
 
 }

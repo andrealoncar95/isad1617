@@ -56,15 +56,7 @@ public class AukerakUI extends JFrame {
 				aT.setVisible(true);
 				
 			}
-		});
-		argazkiakBilatu.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(BilatuKud.instantzia.bilatuArgazkia()){
-					new MezuaBadago();
-				}
-				else new MezuaEzDago();
-			}});	
+		});	
 	}
 
 

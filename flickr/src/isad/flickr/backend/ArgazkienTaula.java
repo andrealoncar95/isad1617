@@ -9,6 +9,7 @@ import java.util.Properties;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
@@ -19,8 +20,9 @@ import isad.flickr.frontend.MezuaEzDago;
 import isad.flickr.kudeatzaileak.BilatuKud;
 
 public class ArgazkienTaula extends JFrame {
-	JButton Igo = new JButton("Igo");
 	MyTableModel modeloa;
+	JPanel botoiPanela = new JPanel(new BorderLayout());
+	JButton Igo = new JButton("Igo");
 	JButton argazkiakBilatu = new JButton("Bilatu");
 
 	public ArgazkienTaula(Properties properties) throws Exception {
@@ -30,8 +32,11 @@ public class ArgazkienTaula extends JFrame {
 		table.setRowHeight(75);
 		JScrollPane scrollPane = new JScrollPane(table);
 		getContentPane().add(scrollPane, BorderLayout.NORTH);
-		getContentPane().add(Igo, BorderLayout.CENTER);
-		getContentPane().add(argazkiakBilatu, BorderLayout.SOUTH);
+		
+		botoiPanela.add(argazkiakBilatu, BorderLayout.EAST);
+		botoiPanela.add(Igo, BorderLayout.WEST);
+		//botoiPanela.setVisible(true);
+		getContentPane().add(botoiPanela, BorderLayout.SOUTH);
 		pack();
 		setVisible(true);
 		Igo.addActionListener(new ActionListener(){
@@ -55,10 +60,15 @@ public class ArgazkienTaula extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				modeloa = (MyTableModel) table.getModel();
-				if(modeloa.bilatuArgazkia(table.getSelectedRow())){
-					new MezuaBadago();
+				try {
+					if(modeloa.bilatuArgazkia(table.getSelectedRow())){
+						new MezuaBadago();
+					}
+					else new MezuaEzDago();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
-				else new MezuaEzDago();
 			}});
 	}
 }

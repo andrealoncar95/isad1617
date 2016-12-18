@@ -63,6 +63,8 @@ public class ArgazkiKud {
 				if (igota) igo = 1;
 				String karpeta = data.get(kont).karpeta;			
 				
+				
+				//Datu basean MD5a ere sartu behar da!!!!!!
 				//dbkud.execSQL("INSERT INTO Argazkia (erabiltzailea, izena, data, igo, karpeta)  values ('" + erabiltzailea  + "', '"+ izena + "', '"+ noiz + "', "+ igo +", '"+  karpeta + "')");
 				String patha = karpeta + File.separator + izena;
 				

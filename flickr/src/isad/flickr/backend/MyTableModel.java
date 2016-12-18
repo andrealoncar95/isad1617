@@ -58,7 +58,7 @@ public class MyTableModel extends AbstractTableModel {
             	Date d = new Date(ms);
             	String direk = dir.getAbsolutePath();
             	
-            	md5= getMD5Checksum(direk + File.separator + f.getName());
+            	
             	
             	
             	//direk = direk.split("\\\\")[direk.split("\\\\").length -1];
@@ -163,8 +163,10 @@ public class MyTableModel extends AbstractTableModel {
 	       return result;
 	   }
 
-	public boolean bilatuArgazkia(Integer ilara) {
-		return BilatuKud.instantzia.bilatuArgazkia(data, ilara, erabiltzailea, md5);
+	public boolean bilatuArgazkia(Integer ilara) throws Exception {
+		md5= getMD5Checksum(data.get(ilara).karpeta + File.separator + data.get(ilara).izena);
+		
+		return BilatuKud.instantzia.bilatuArgazkia(md5);
 	}
 	
 

@@ -39,7 +39,7 @@ public class LoginKud {
 	        if (properties.getProperty("token") == null){
 	        properties.setProperty("apiKey", api);
 	        properties.setProperty("secret", secret);
-	        Flickr flickr = new Flickr(properties.getProperty("apiKey"), properties.getProperty("secret"), new REST());
+	        ArgazkiKud.f = new Flickr(properties.getProperty("apiKey"), properties.getProperty("secret"), new REST());
 	        Flickr.debugStream = false;
 	        AuthInterface authInterface = ArgazkiKud.f.getAuthInterface();
 

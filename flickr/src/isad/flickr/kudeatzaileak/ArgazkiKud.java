@@ -72,9 +72,7 @@ public class ArgazkiKud {
 				System.out.println(patha);
 			    InputStream in = null;
 			    Uploader uploader = ArgazkiKud.f.getUploader();
-			    PhotosInterface pint = ArgazkiKud.f.getPhotosInterface();
-
-			        try {
+			    try {
 			            in = new FileInputStream(imageFile);
 			            UploadMetaData metaData = buildPrivatePhotoMetadata();
 			            metaData.setPublicFlag(false);

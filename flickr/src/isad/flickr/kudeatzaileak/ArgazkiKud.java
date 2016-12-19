@@ -42,7 +42,7 @@ public class ArgazkiKud {
 
 
 	public void argazkiakIgo(List<LagThumbnail> data, String erabiltzailea) throws FlickrException, IOException {
-		//DBkud dbkud = DBkud.getInstantzia();
+		DBkud dbkud = DBkud.getInstantzia();
 		int kont = 0;
 		/* InputStream in1 = null;
 	        try {
@@ -61,15 +61,16 @@ public class ArgazkiKud {
 				Boolean igota = data.get(kont).igo;
 				int igo = 0;
 				if (igota) igo = 1;
-				String karpeta = data.get(kont).karpeta;			
-				
-				
-				//Datu basean MD5a ere sartu behar da!!!!!!
-				//dbkud.execSQL("INSERT INTO Argazkia (erabiltzailea, izena, data, igo, karpeta)  values ('" + erabiltzailea  + "', '"+ izena + "', '"+ noiz + "', "+ igo +", '"+  karpeta + "')");
+				String karpeta = data.get(kont).karpeta;	
 				String patha = karpeta + File.separator + izena;
 				
 				File imageFile = new File(patha);
 				System.out.println(patha);
+				String md5 = data.get(kont).md5Lortu(imageFile);
+				
+				//Datu basean MD5a ere sartu dogu!
+				dbkud.execSQL("REPLACE INTO Argazkia (erabiltzailea, izena, data, igo, karpeta, md5)  values ('" + erabiltzailea  + "', '"+ izena + "', '"+ noiz + "', "+ igo +", '"+  karpeta + "', '"+ md5 + "')");
+				
 			    InputStream in = null;
 			    Uploader uploader = ArgazkiKud.f.getUploader();
 			    try {
@@ -78,6 +79,7 @@ public class ArgazkiKud {
 			            metaData.setPublicFlag(false);
 			            metaData.setTitle(izena);
 			            String photoId = uploader.upload(in, metaData);
+			            
 			          /*  try {
 			                pint.delete(photoId);
 			            } catch (FlickrException e) {
@@ -95,9 +97,10 @@ public class ArgazkiKud {
 			}
 			kont++;
 		}
-		
-		
 	}
+	
+	
+	
 	private UploadMetaData buildPrivatePhotoMetadata() {
         UploadMetaData uploadMetaData = new UploadMetaData();
         uploadMetaData.setPublicFlag(false);

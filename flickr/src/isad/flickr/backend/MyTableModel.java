@@ -23,7 +23,6 @@ import com.flickr4java.flickr.util.IOUtilities;
 
 import isad.flickr.frontend.MezuaUI;
 import isad.flickr.kudeatzaileak.ArgazkiKud;
-import isad.flickr.kudeatzaileak.BilatuKud;
 
 public class MyTableModel extends AbstractTableModel {
 	
@@ -49,7 +48,6 @@ public class MyTableModel extends AbstractTableModel {
             for (final File f : dir.listFiles()) {
             	            	
             	if ((f.getAbsolutePath().contains(".jpg")) || (f.getAbsolutePath().contains(".gif")) || (f.getAbsolutePath().contains(".png")) || (f.getAbsolutePath().contains(".bmp")) || (f.getAbsolutePath().contains(".JPG")) || (f.getAbsolutePath().contains(".GIF")) || (f.getAbsolutePath().contains(".PNG")) || (f.getAbsolutePath().contains(".BMP"))){
-            	//System.out.println("image: " + f.getName());
             	ImageIcon image = new ImageIcon(dir + File.separator + f.getName(), dir + File.separator + f.getName());
             	Image img = image.getImage();
             	Image argazkia = img.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);
@@ -135,7 +133,7 @@ public class MyTableModel extends AbstractTableModel {
 		
 	}
 	
-	public static byte[] createChecksum(String filename) throws Exception {
+	/*public static byte[] createChecksum(String filename) throws Exception {
 	       InputStream fis =  new FileInputStream(filename);
 
 	       byte[] buffer = new byte[1024];
@@ -167,7 +165,7 @@ public class MyTableModel extends AbstractTableModel {
 		md5= getMD5Checksum(data.get(ilara).karpeta + File.separator + data.get(ilara).izena);
 		
 		return BilatuKud.instantzia.bilatuArgazkia(md5);
-	}
+	}*/
 	
 
 }

@@ -12,8 +12,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import isad.flickr.backend.ArgazkienTaula;
-import isad.flickr.kudeatzaileak.BilatuKud;
 
 public class AukerakUI extends JFrame {
 

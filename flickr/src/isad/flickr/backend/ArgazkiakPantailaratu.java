@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
+import java.util.List;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -18,7 +19,7 @@ import com.flickr4java.flickr.auth.Auth;
 import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photos.PhotoList;
-
+import com.flickr4java.flickr.photos.PhotosInterface;
 import com.flickr4java.flickr.photosets.Photoset;
 import com.flickr4java.flickr.photosets.Photosets;
 import com.flickr4java.flickr.photosets.PhotosetsInterface;
@@ -62,7 +63,7 @@ public class ArgazkiakPantailaratu {
 	public static void main(String[] args) {
 		try {
 			ArgazkiakPantailaratu t = new ArgazkiakPantailaratu();
-			t.showPhotos();
+			t.irudiakItzuli();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -72,10 +73,11 @@ public class ArgazkiakPantailaratu {
 	public void showPhotos() {
 
 		String userId = properties.getProperty("nsid");
-		// String secret = properties.getProperty("secret");
+		//String secret = properties.getProperty("secret");
 
 		PhotosetsInterface photosetsInterface = f.getPhotosetsInterface();
 		Photosets photosets;
+		PhotosInterface photosInterface = f.getPhotosInterface();
 		try {
 			photosets = photosetsInterface.getList(userId);
 
@@ -113,7 +115,7 @@ public class ArgazkiakPantailaratu {
 
 	}
 	
-	public PhotoList<Photo> irudiakItzuli() {
+	public List<Photo> irudiakItzuli() {
 		
 
 		String userId = properties.getProperty("nsid");

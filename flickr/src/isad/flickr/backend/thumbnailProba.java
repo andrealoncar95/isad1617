@@ -55,17 +55,17 @@ public class thumbnailProba extends JFrame{
                 ImageIcon image = new ImageIcon(dir.toString());
                 Icon img = new ImageIcon(image.getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
             	//Image argazki= (Image) img;
-               // ImageIcon ikonoBerria = new ImageIcon(argazki);
+                //ImageIcon ikonoBerria = new ImageIcon(argazki);
             	//String izena = img.toString();
             	//System.out.println(image.getImage());
-            	
-            	//data.add(new lagThumbnail("Kathy", "Smith", "Snowboarding", 5, false));
             	
             	JLabel imagelabel = new JLabel(img);
                 imagelabel.setPreferredSize(new Dimension(17, 22));
                 panela.add(imagelabel, BorderLayout.CENTER);
+                
             }
-            getContentPane().add(panela);
+            getContentPane().setLayout(new BorderLayout());
+            getContentPane().add(panela, BorderLayout.CENTER);
 
         }
     }

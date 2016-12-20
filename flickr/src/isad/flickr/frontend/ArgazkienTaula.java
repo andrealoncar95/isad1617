@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingUtilities;
 
 import com.flickr4java.flickr.FlickrException;
 
@@ -99,6 +100,7 @@ public class ArgazkienTaula extends JFrame {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					ArgazkienTaula aT = null;
+					SwingUtilities.getWindowAncestor(getContentPane()).dispose();
 					try {
 						table.setVisible(false);
 						aT = new ArgazkienTaula(properties);

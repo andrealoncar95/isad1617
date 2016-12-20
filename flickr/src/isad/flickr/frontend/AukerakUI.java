@@ -11,13 +11,12 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 
 public class AukerakUI extends JFrame {
 
 	JButton argazkiakIgo = new JButton("Argazkiak igo edozein karpetan");
-	JButton argazkiakIgoK = new JButton("Argazkiak igo nahi duzun karpetan");
-	JButton argazkiakBilatu = new JButton("Argazkiak bilatu");
 	
 	
 	public AukerakUI(Properties properties) {
@@ -31,8 +30,6 @@ public class AukerakUI extends JFrame {
 		panela.setLayout(bl);
 		setSize(400,400);
 		panela.add(argazkiakIgo);
-		panela.add(argazkiakIgoK);
-		panela.add(argazkiakBilatu);
 		pack();
 		setVisible(true);
 	}
@@ -44,6 +41,8 @@ public class AukerakUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ArgazkienTaula aT = null;
+				SwingUtilities.getWindowAncestor(getContentPane()).dispose();
+
 				try {
 					aT = new ArgazkienTaula(properties);
 				} catch (Exception e1) {
@@ -58,13 +57,4 @@ public class AukerakUI extends JFrame {
 	}
 
 
-	/*public static void main(String[] args) {
-		
-			AukerakUI pantailaNagusia = new AukerakUI();
-			pantailaNagusia.setSize(300, 200);
-			pantailaNagusia.pack();
-			pantailaNagusia.setVisible(true);
-			
-	}
-*/
 }

@@ -42,7 +42,7 @@ public class ArgazkiKud {
 
 
 
-	public void argazkiakIgo(List<LagThumbnail> data, String erabiltzailea) throws FlickrException, IOException {
+	public void argazkiakIgo(List<LagThumbnail> data, String erabiltzailea) throws Exception {
 		DBkud dbkud = DBkud.getInstantzia();
 		int kont = 0;
 		/* InputStream in1 = null;
@@ -67,7 +67,7 @@ public class ArgazkiKud {
 				
 				File imageFile = new File(patha);
 				System.out.println(patha);
-				String md5 = data.get(kont).md5Lortu(imageFile);
+				String md5 = data.get(kont).getMD5Checksum(patha);
 				
 				//Datu basean MD5a ere sartu dogu!
 				dbkud.execSQL("REPLACE INTO Argazkia (erabiltzailea, izena, data, igo, karpeta, md5)  values ('" + erabiltzailea  + "', '"+ izena + "', '"+ noiz + "', "+ igo +", '"+  karpeta + "', '"+ md5 + "')");

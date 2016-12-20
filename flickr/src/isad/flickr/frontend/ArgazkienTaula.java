@@ -52,7 +52,7 @@ public class ArgazkienTaula extends JFrame {
 		pack();
 		setVisible(true);
 		igoActionListener();
-		//bilatuActionListener();
+		bilatuActionListener();
 		argazkiakPCActionListener(properties);
 	}
 	
@@ -62,13 +62,8 @@ public class ArgazkienTaula extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				modeloa = (MyTableModel) table.getModel();
 				try {
-					try {
-						modeloa.igo();
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				} catch (FlickrException e1) {
+					modeloa.igo();
+				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
@@ -85,10 +80,13 @@ public class ArgazkienTaula extends JFrame {
 						int lastRow = table.convertRowIndexToView(modeloa.getRowCount() - 1);
 						table.setRowSelectionInterval(lastRow, lastRow);
 					}
-					if(modeloa.bilatuArgazkia(table.getSelectedRow())){
-						new MezuaBadago();
+					else{
+						if(modeloa.bilatuArgazkia(table.getSelectedRow())){
+							new MezuaBadago();
+						}
+						else new MezuaEzDago();
 					}
-					else new MezuaEzDago();
+					
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -102,6 +100,7 @@ public class ArgazkienTaula extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					ArgazkienTaula aT = null;
 					try {
+						table.setVisible(false);
 						aT = new ArgazkienTaula(properties);
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block

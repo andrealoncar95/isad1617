@@ -135,7 +135,7 @@ public class ArgazkiakPantailaratu {
 	
 	private LagThumbnail argazkiaSortu(Photo p){
 		String id =p.getId();
-		String deskr = p.getDescription();
+		String deskribapena = p.getDescription();
 		String title = p.getTitle();
 		ImageIcon img = null;
 		try{
@@ -151,7 +151,7 @@ public class ArgazkiakPantailaratu {
 			etiketa = tag.getValue();
 			etiketak.add(etiketa);
 		}
-		LagThumbnail arg = new LagThumbnail(title,deskr,etiketak, img, id);
+		LagThumbnail arg = new LagThumbnail(title, deskribapena, etiketak, img, id);
 		arg.setPribatutasuna(p.isPublicFlag(), p.isFriendFlag(), p.isFamilyFlag());
 		return arg;
 	}

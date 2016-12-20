@@ -2,6 +2,7 @@ package isad.flickr.backend;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.security.MessageDigest;
 import java.sql.Date;
 
@@ -73,31 +74,33 @@ public class LagThumbnail {
 		}
 	}
 	
-	public String md5Lortu(File f){
-		try{
-			MessageDigest md = MessageDigest.getInstance("MD5");
-	        FileInputStream fis = new FileInputStream(f);
-	
-	        byte[] dataBytes = new byte[1024];
-	
-	        int nread = 0;
-	        while ((nread = fis.read(dataBytes)) != -1) {
-	          md.update(dataBytes, 0, nread);
-	        };
-	        byte[] mdbytes = md.digest();
-	
-	        //convert the byte to hex format method 1
-	        StringBuffer sb = new StringBuffer();
-	        for (int i = 0; i < mdbytes.length; i++) {
-	          sb.append(Integer.toString((mdbytes[i] & 0xff) + 0x100, 16).substring(1));
-	        }
+	public byte[] createChecksum(String filename) throws Exception {
+	       InputStream fis =  new FileInputStream(filename);
 
-			return sb.toString();
-		}
-		catch (Exception e) {
-			// TODO: handle exception
-			return null;
-		}
-	}
+	       byte[] buffer = new byte[1024];
+	       MessageDigest complete = MessageDigest.getInstance("MD5");
+	       int numRead;
+
+	       do {
+	           numRead = fis.read(buffer);
+	           if (numRead > 0) {
+	               complete.update(buffer, 0, numRead);
+	           }
+	       } while (numRead != -1);
+
+	       fis.close();
+	       return complete.digest();
+	   }
+	
+	public String getMD5Checksum(String filename) throws Exception {
+	       byte[] b = createChecksum(filename);
+	       String result = "";
+
+	       for (int i=0; i < b.length; i++) {
+	           result += Integer.toString( ( b[i] & 0xff ) + 0x100, 16).substring( 1 );
+	       }
+	       return result;
+	   }
+
 	
 }

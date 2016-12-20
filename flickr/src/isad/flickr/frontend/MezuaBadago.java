@@ -23,14 +23,14 @@ import javax.swing.border.LineBorder;
 
 public class MezuaBadago extends JFrame {
 	public MezuaBadago() {
-		super("Bilatzen duzun argazkia jadanik igota dago!! ");
+		super("Mezua badago");
 		getContentPane().setLayout(new BorderLayout());
 		((JPanel)getContentPane()).setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		
 		JFrame frame = new JFrame();
 		frame.setLayout(new GridBagLayout());
 		JPanel panel = new JPanel();
-		JLabel label1 = new JLabel("Aukeratu karpeta bat argazkiekin edo igo gabeko argazkiekin");
+		JLabel label1 = new JLabel("Bilatzen duzun argazkia jadanik igota dago!!");
 		panel.add(label1);
 		panel.setBorder(new LineBorder(Color.BLACK));
 		frame.add(panel, new GridBagConstraints());

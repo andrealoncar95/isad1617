@@ -128,42 +128,15 @@ public class MyTableModel extends AbstractTableModel {
 			data.get(i).insertElementAt(value, j);
 	}
 
-	public void igo() throws FlickrException, IOException {
+	public void igo() throws Exception {
 		ArgazkiKud.instantzia.argazkiakIgo(data, erabiltzailea);
 		
 	}
 	
-	public static byte[] createChecksum(String filename) throws Exception {
-	       InputStream fis =  new FileInputStream(filename);
-
-	       byte[] buffer = new byte[1024];
-	       MessageDigest complete = MessageDigest.getInstance("MD5");
-	       int numRead;
-
-	       do {
-	           numRead = fis.read(buffer);
-	           if (numRead > 0) {
-	               complete.update(buffer, 0, numRead);
-	           }
-	       } while (numRead != -1);
-
-	       fis.close();
-	       return complete.digest();
-	   }
 	
-	public static String getMD5Checksum(String filename) throws Exception {
-	       byte[] b = createChecksum(filename);
-	       String result = "";
-
-	       for (int i=0; i < b.length; i++) {
-	           result += Integer.toString( ( b[i] & 0xff ) + 0x100, 16).substring( 1 );
-	       }
-	       return result;
-	   }
-
 	public boolean bilatuArgazkia(Integer ilara) throws Exception {
-		md5= getMD5Checksum(data.get(ilara).karpeta + File.separator + data.get(ilara).izena);
-		
+		md5 = data.get(ilara).getMD5Checksum(data.get(ilara).karpeta + File.separator + data.get(ilara).izena);
+		System.out.println(md5);
 		return ArgazkiKud.instantzia.bilatuArgazkia(md5);
 	}
 	

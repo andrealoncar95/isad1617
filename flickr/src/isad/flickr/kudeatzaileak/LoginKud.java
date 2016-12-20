@@ -27,69 +27,69 @@ public class LoginKud {
 	public static LoginKud instantzia = new LoginKud();
 	private Properties properties = null;
 	public LoginKud(){
-		
+
 	}
 
 	public Properties konektatu(String api, String secret) throws IOException, FlickrException {
-	        InputStream in = null;
-	        try {
-	            in = new FileInputStream("setup.properties");
-	            properties = new Properties();
-	            properties.load(in);
-	        } finally {
-	            IOUtilities.close(in);
-	        }
-	        if (properties.getProperty("token").length() < 2){
-	        properties.setProperty("apiKey", api);
-	        properties.setProperty("secret", secret);
-	        ArgazkiKud.f = new Flickr(properties.getProperty("apiKey"), properties.getProperty("secret"), new REST());
-	        Flickr.debugStream = false;
-	        AuthInterface authInterface = ArgazkiKud.f.getAuthInterface();
+		InputStream in = null;
+		try {
+			in = new FileInputStream("setup.properties");
+			properties = new Properties();
+			properties.load(in);
+		} finally {
+			IOUtilities.close(in);
+		}
+		if (properties.getProperty("token").length() < 2){
+			properties.setProperty("apiKey", api);
+			properties.setProperty("secret", secret);
+			ArgazkiKud.f = new Flickr(properties.getProperty("apiKey"), properties.getProperty("secret"), new REST());
+			Flickr.debugStream = false;
+			AuthInterface authInterface = ArgazkiKud.f.getAuthInterface();
 
-	        Scanner scanner = new Scanner(System.in);
+			Scanner scanner = new Scanner(System.in);
 
-	        Token token = authInterface.getRequestToken();
-	        System.out.println("token: " + token);
+			Token token = authInterface.getRequestToken();
+			System.out.println("token: " + token);
 
-	        String url = authInterface.getAuthorizationUrl(token, Permission.DELETE);
-	        
-	        System.out.println("Itsatsi hurrengo URL-a nabigatzailean: ");
-	        System.out.println(url);
-	        System.out.println("Itsatsi hemen emandako kodea:");
-	        System.out.print(">>");
+			String url = authInterface.getAuthorizationUrl(token, Permission.DELETE);
 
-	        String tokenKey = scanner.nextLine();
-	        scanner.close();
+			System.out.println("Itsatsi hurrengo URL-a nabigatzailean: ");
+			System.out.println(url);
+			System.out.println("Itsatsi hemen emandako kodea:");
+			System.out.print(">>");
 
-	        Token requestToken = authInterface.getAccessToken(token, new Verifier(tokenKey));
-	        System.out.println("Ondo konektatuta");
+			String tokenKey = scanner.nextLine();
+			scanner.close();
 
-	        Auth auth = authInterface.checkToken(requestToken);
-	        
-	        properties.setProperty("token", requestToken.getToken());
-	        properties.setProperty("tokensecret", requestToken.getSecret());
-	        properties.setProperty("nsid", auth.getUser().getId());
-	        properties.setProperty("displayname", auth.getUser().getRealName());
-	        properties.setProperty("username", auth.getUser().getUsername());
-	        File file = new File("setup.properties");
-	        FileOutputStream fr=new FileOutputStream(file);
-	        properties.store(fr, null);
-	        
-	        	REST rest = new REST();
-	            rest.setHost(properties.getProperty("host"));
-	            
-	        	ArgazkiKud.f = new Flickr(properties.getProperty("apiKey"), properties.getProperty("secret"), rest);
-	        		        	
-	            auth = new Auth();
-	            auth.setPermission(Permission.READ);
-	            auth.setToken(properties.getProperty("token"));
-	            auth.setTokenSecret(properties.getProperty("tokensecret"));
+			Token requestToken = authInterface.getAccessToken(token, new Verifier(tokenKey));
+			System.out.println("Ondo konektatuta");
 
-	            RequestContext requestContext = RequestContext.getRequestContext();
-	            requestContext.setAuth(auth);
-	            ArgazkiKud.f.setAuth(auth);
-	        		
-	        }
-	        return properties;
+			Auth auth = authInterface.checkToken(requestToken);
+
+			properties.setProperty("token", requestToken.getToken());
+			properties.setProperty("tokensecret", requestToken.getSecret());
+			properties.setProperty("nsid", auth.getUser().getId());
+			properties.setProperty("displayname", auth.getUser().getRealName());
+			properties.setProperty("username", auth.getUser().getUsername());
+			File file = new File("setup.properties");
+			FileOutputStream fr=new FileOutputStream(file);
+			properties.store(fr, null);
+
+			REST rest = new REST();
+			rest.setHost(properties.getProperty("host"));
+
+			ArgazkiKud.f = new Flickr(properties.getProperty("apiKey"), properties.getProperty("secret"), rest);
+
+			auth = new Auth();
+			auth.setPermission(Permission.READ);
+			auth.setToken(properties.getProperty("token"));
+			auth.setTokenSecret(properties.getProperty("tokensecret"));
+
+			RequestContext requestContext = RequestContext.getRequestContext();
+			requestContext.setAuth(auth);
+			ArgazkiKud.f.setAuth(auth);
+
+		}
+		return properties;
 	}
 }

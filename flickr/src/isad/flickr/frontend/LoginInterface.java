@@ -60,7 +60,7 @@ public class LoginInterface extends JPanel{
 		SpringUtilities.makeCompactGrid(nagusia, 3, 2, 10, 10, 2, 2);
 		
 		//Set up the picture label.
-		ImageIcon argazkia2 = new ImageIcon("images/logo-flickr.gif");
+		ImageIcon argazkia2 = new ImageIcon("src/images/logo-flickr.gif");
 		Image img = argazkia2.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT);
 		
     	ImageIcon ikonoBerria = new ImageIcon(img);

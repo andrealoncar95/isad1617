@@ -6,6 +6,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -112,8 +114,13 @@ public class ArgazkiKud {
 
 
 
-	public boolean bilatuArgazkia(String md5) {
-		// TODO Auto-generated method stub
+	public boolean bilatuArgazkia(String md5) throws SQLException {
+		DBkud dbkud = DBkud.getInstantzia();
+		ResultSet rs = null;
+		rs = dbkud.execSQL("SELECT md5 from Argazkia where md5 = '" + md5 + "'");
+		while (rs.next()){
+			if (md5.equals(rs.getString("md5")))return true;
+		}
 		return false;
 	}
 

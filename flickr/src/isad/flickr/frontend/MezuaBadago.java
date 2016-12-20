@@ -30,7 +30,7 @@ public class MezuaBadago extends JFrame {
 		JFrame frame = new JFrame();
 		frame.setLayout(new GridBagLayout());
 		JPanel panel = new JPanel();
-		JLabel label1 = new JLabel("Bilatzen duzun argazkia jadanik igota dago!!");
+		JLabel label1 = new JLabel("Bilatzen duzun argazkia IGOTA dago!!");
 		panel.add(label1);
 		panel.setBorder(new LineBorder(Color.BLACK));
 		frame.add(panel, new GridBagConstraints());

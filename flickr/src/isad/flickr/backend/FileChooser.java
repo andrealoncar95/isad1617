@@ -20,12 +20,8 @@ public class FileChooser extends JFrame {
 	private JFileChooser file= new JFileChooser();
 
 	public FileChooser() {
-		FileNameExtensionFilter filtroJPG = new FileNameExtensionFilter("*.JPG", "jpg");
-		FileNameExtensionFilter filtroGIF = new FileNameExtensionFilter("*.GIF", "gif");
-		FileNameExtensionFilter filtroPNG = new FileNameExtensionFilter("*.PNG", "png");
-		file.setFileFilter(filtroGIF);
-		file.setFileFilter(filtroPNG);
-		file.setFileFilter(filtroJPG);
+		FileNameExtensionFilter filtro = new FileNameExtensionFilter("JPG, PNG & GIF","jpg","png","gif");
+		file.setFileFilter(filtro);
 		file.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 		file.showOpenDialog(this);
 		dir=file.getSelectedFile();

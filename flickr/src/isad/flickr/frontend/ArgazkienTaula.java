@@ -37,6 +37,7 @@ public class ArgazkienTaula extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		table = new JTable(new MyTableModel());
 		table.setRowHeight(75);
+		table.getTableHeader().setReorderingAllowed(false);
 		JScrollPane scrollPane = new JScrollPane(table);
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
 		listPaneNorte.setLayout(new BoxLayout(listPaneNorte, BoxLayout.PAGE_AXIS));

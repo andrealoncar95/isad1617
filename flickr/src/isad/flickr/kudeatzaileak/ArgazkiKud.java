@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -78,6 +79,8 @@ public class ArgazkiKud {
 			            UploadMetaData metaData = buildPrivatePhotoMetadata();
 			            metaData.setPublicFlag(false);
 			            metaData.setTitle(izena);
+			            Collection<String> tags = null;
+			            metaData.setTags(tags);
 			            String photoId = uploader.upload(in, metaData);
 			            
 			          /*  try {

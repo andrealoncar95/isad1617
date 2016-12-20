@@ -81,8 +81,6 @@ public class ArgazkiKud {
 			            UploadMetaData metaData = buildPrivatePhotoMetadata();
 			            metaData.setPublicFlag(false);
 			            metaData.setTitle(izena);
-			            Collection<String> tags = null;
-			            metaData.setTags(tags);
 			            String photoId = uploader.upload(in, metaData);
 			            
 			          /*  try {

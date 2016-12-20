@@ -3,6 +3,7 @@ package isad.flickr.frontend;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -14,6 +15,7 @@ import java.util.stream.Stream;
 import javax.swing.*;
 
 import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.util.IOUtilities;
 
 import isad.flickr.kudeatzaileak.DBkud;
 import isad.flickr.kudeatzaileak.LoginKud;
@@ -60,7 +62,7 @@ public class LoginInterface extends JPanel{
 		SpringUtilities.makeCompactGrid(nagusia, 3, 2, 10, 10, 2, 2);
 		
 		//Set up the picture label.
-		ImageIcon argazkia2 = new ImageIcon("src/images/logo-flickr.gif");
+		ImageIcon argazkia2 = new ImageIcon("images/logo-flickr.gif");
 		Image img = argazkia2.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT);
 		
     	ImageIcon ikonoBerria = new ImageIcon(img);
@@ -78,17 +80,28 @@ public class LoginInterface extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 			
 			try {
-				if (apiKey.getText().equals("") || secret.getText().equals("")){
-					new MezuaLogin();
-					new LoginInterface();
-				}
-				else{
+				 InputStream in = null;
+			        try {
+			            in = new FileInputStream("setup.properties");
+			            properties = new Properties();
+			            properties.load(in);
+			        } finally {
+			            IOUtilities.close(in);
+			        }
+			       
+				
+				
+//				if ((properties.getProperty("token").length() < 2) || ((apiKey.getText().equals("") || secret.getText().equals("")))){
+//					new MezuaLogin();
+//					new LoginInterface();
+//				}
+//				else{
 					LoginKud.instantzia.konektatu(apiKey.getText(), secret.getText());
 					SwingUtilities.getWindowAncestor(nagusia).dispose();
 					AukerakUI aU;
 					aU = new AukerakUI();
 					aU.setVisible(true);
-				}
+				
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

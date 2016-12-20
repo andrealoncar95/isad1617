@@ -1,6 +1,7 @@
 package isad.flickr.kudeatzaileak;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,7 +33,7 @@ public class LoginKud {
 	public Properties konektatu(String api, String secret) throws IOException, FlickrException {
 	        InputStream in = null;
 	        try {
-	            in = getClass().getResourceAsStream("/setup.properties");
+	            in = new FileInputStream("setup.properties");
 	            properties = new Properties();
 	            properties.load(in);
 	        } finally {
@@ -70,7 +71,7 @@ public class LoginKud {
 	        properties.setProperty("nsid", auth.getUser().getId());
 	        properties.setProperty("displayname", auth.getUser().getRealName());
 	        properties.setProperty("username", auth.getUser().getUsername());
-	        File file = new File("src/setup.properties");
+	        File file = new File("setup.properties");
 	        FileOutputStream fr=new FileOutputStream(file);
 	        properties.store(fr, null);
 	        } else {

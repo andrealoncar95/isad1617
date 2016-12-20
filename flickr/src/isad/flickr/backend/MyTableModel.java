@@ -41,11 +41,10 @@ public class MyTableModel extends AbstractTableModel {
 		hasieratuZutabeIzenak();
 		fC= new FileChooser();
 		File dir= fC.getDirektorioa();
-		
 		 InputStream in = null;
 	        
 			try {
-	            in = getClass().getResourceAsStream("/setup.properties");
+				in = new FileInputStream("setup.properties");
 	            properties = new Properties();
 	            properties.load(in);
 	        } finally {

@@ -133,7 +133,7 @@ public class MyTableModel extends AbstractTableModel {
 		
 	}
 	
-	/*public static byte[] createChecksum(String filename) throws Exception {
+	public static byte[] createChecksum(String filename) throws Exception {
 	       InputStream fis =  new FileInputStream(filename);
 
 	       byte[] buffer = new byte[1024];
@@ -164,8 +164,8 @@ public class MyTableModel extends AbstractTableModel {
 	public boolean bilatuArgazkia(Integer ilara) throws Exception {
 		md5= getMD5Checksum(data.get(ilara).karpeta + File.separator + data.get(ilara).izena);
 		
-		return BilatuKud.instantzia.bilatuArgazkia(md5);
-	}*/
+		return ArgazkiKud.instantzia.bilatuArgazkia(md5);
+	}
 	
 
 }

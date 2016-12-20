@@ -82,6 +82,7 @@ public class LoginInterface extends JPanel{
 				if (properties == null){
 					System.out.println("fdsfdfdsgdg");
 				}
+				nagusia.setVisible(false);
 				AukerakUI aU;
 				aU = new AukerakUI(properties);
 				aU.setVisible(true);

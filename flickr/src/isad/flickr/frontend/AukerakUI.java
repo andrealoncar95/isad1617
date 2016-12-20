@@ -22,7 +22,6 @@ public class AukerakUI extends JFrame {
 	
 	public AukerakUI(Properties properties) {
 		super("Aukeratu");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		((JPanel)getContentPane()).setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		botoiakPrestatu(properties);
@@ -51,6 +50,7 @@ public class AukerakUI extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				
 				aT.setVisible(true);
 				
 			}

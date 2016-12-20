@@ -108,5 +108,12 @@ public class ArgazkiKud {
 }
 
 
+
+	public boolean bilatuArgazkia(String md5) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
 }
 

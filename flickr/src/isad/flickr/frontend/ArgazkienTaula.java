@@ -75,12 +75,16 @@ public class ArgazkienTaula extends JFrame {
 			}});
 		}
 	
-	/*private void bilatuActionListener() {
+	private void bilatuActionListener() {
 		argazkiakBilatu.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				modeloa = (MyTableModel) table.getModel();
 				try {
+					if (table.getSelectedRow() == -1){
+						int lastRow = table.convertRowIndexToView(modeloa.getRowCount() - 1);
+						table.setRowSelectionInterval(lastRow, lastRow);
+					}
 					if(modeloa.bilatuArgazkia(table.getSelectedRow())){
 						new MezuaBadago();
 					}
@@ -90,7 +94,7 @@ public class ArgazkienTaula extends JFrame {
 					e1.printStackTrace();
 				}
 			}});
-		}*/
+		}
 	
 	private void argazkiakPCActionListener(Properties properties) {
 		argazkiakPC.addActionListener(new ActionListener(){

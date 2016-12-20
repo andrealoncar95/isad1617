@@ -78,14 +78,17 @@ public class LoginInterface extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 			
 			try {
-				properties = LoginKud.instantzia.konektatu(apiKey.getText(), secret.getText());
-				if (properties == null){
-					System.out.println("fdsfdfdsgdg");
+				if (apiKey.getText().equals("") || secret.getText().equals("")){
+					new MezuaLogin();
+					new LoginInterface();
 				}
-				SwingUtilities.getWindowAncestor(nagusia).dispose();
-				AukerakUI aU;
-				aU = new AukerakUI(properties);
-				aU.setVisible(true);
+				else{
+					properties = LoginKud.instantzia.konektatu(apiKey.getText(), secret.getText());
+					SwingUtilities.getWindowAncestor(nagusia).dispose();
+					AukerakUI aU;
+					aU = new AukerakUI(properties);
+					aU.setVisible(true);
+				}
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

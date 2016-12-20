@@ -30,7 +30,7 @@ public class ArgazkienTaula extends JFrame {
 	JButton argazkiakBilatu = new JButton("Bilatu");
 	
 	JButton argazkiakPC = new JButton("Argazkiak aukeratu");
-	JButton argazkiakFlickr = new JButton("Flickr-eko argazkiak");
+
 
 	public ArgazkienTaula(Properties properties) throws Exception {
 		super("Zure argazkien datuak eta igo nahi badituzu:");
@@ -45,7 +45,7 @@ public class ArgazkienTaula extends JFrame {
 		listPaneNorte.add(argazkiakPC);
 		listPaneSur.add(igo);
 		listPaneSur.add(argazkiakBilatu);
-		listPaneNorte.add(argazkiakFlickr);
+
 		
 		botoiPanela1.add(listPaneSur, BorderLayout.SOUTH);
 		botoiPanela1.add(listPaneNorte, BorderLayout.NORTH);

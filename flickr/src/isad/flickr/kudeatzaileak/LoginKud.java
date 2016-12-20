@@ -36,7 +36,7 @@ public class LoginKud {
 	        } finally {
 	            IOUtilities.close(in);
 	        }
-	        if (properties.getProperty("token") == null){
+	        if (properties.getProperty("token").length() < 2){
 	        properties.setProperty("apiKey", api);
 	        properties.setProperty("secret", secret);
 	        ArgazkiKud.f = new Flickr(properties.getProperty("apiKey"), properties.getProperty("secret"), new REST());
@@ -49,6 +49,7 @@ public class LoginKud {
 	        System.out.println("token: " + token);
 
 	        String url = authInterface.getAuthorizationUrl(token, Permission.DELETE);
+	        
 	        System.out.println("Itsatsi hurrengo URL-a nabigatzailean: ");
 	        System.out.println(url);
 	        System.out.println("Itsatsi hemen emandako kodea:");

@@ -31,16 +31,26 @@ public class MyTableModel extends AbstractTableModel {
 	private FileChooser fC;
 	private String erabiltzailea;
 	private String md5;
+	Properties properties;
 	
-	
-	public MyTableModel(Properties properties) throws Exception{
-		kargatu(properties);
+	public MyTableModel() throws Exception{
+		kargatu();
 	}
 	
-	private void kargatu(Properties properties) throws Exception{
+	private void kargatu() throws Exception{
 		hasieratuZutabeIzenak();
 		fC= new FileChooser();
 		File dir= fC.getDirektorioa();
+		
+		 InputStream in = null;
+	        
+			try {
+	            in = getClass().getResourceAsStream("/setup.properties");
+	            properties = new Properties();
+	            properties.load(in);
+	        } finally {
+	            IOUtilities.close(in);
+	        }
 		
 		erabiltzailea = properties.getProperty("username");
 		

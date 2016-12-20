@@ -19,11 +19,11 @@ public class AukerakUI extends JFrame {
 	JButton argazkiakIgo = new JButton("Argazkiak igo edozein karpetan");
 	
 	
-	public AukerakUI(Properties properties) {
+	public AukerakUI() {
 		super("Aukeratu");
 		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		((JPanel)getContentPane()).setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-		botoiakPrestatu(properties);
+		botoiakPrestatu();
 		
 		Container panela = this.getContentPane();
 		BoxLayout bl = new BoxLayout(panela, BoxLayout.Y_AXIS);
@@ -35,7 +35,7 @@ public class AukerakUI extends JFrame {
 	}
 	
 	
-	private void botoiakPrestatu(Properties properties) {
+	private void botoiakPrestatu() {
 		argazkiakIgo.addActionListener(new ActionListener() {
 			
 			@Override
@@ -44,7 +44,7 @@ public class AukerakUI extends JFrame {
 				SwingUtilities.getWindowAncestor(getContentPane()).dispose();
 
 				try {
-					aT = new ArgazkienTaula(properties);
+					aT = new ArgazkienTaula();
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

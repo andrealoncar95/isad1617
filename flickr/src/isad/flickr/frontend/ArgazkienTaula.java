@@ -32,10 +32,10 @@ public class ArgazkienTaula extends JFrame {
 	JButton argazkiakPC = new JButton("Argazkiak aukeratu");
 
 
-	public ArgazkienTaula(Properties properties) throws Exception {
+	public ArgazkienTaula() throws Exception {
 		super("Zure argazkien datuak eta igo nahi badituzu:");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		table = new JTable(new MyTableModel(properties));
+		table = new JTable(new MyTableModel());
 		table.setRowHeight(75);
 		JScrollPane scrollPane = new JScrollPane(table);
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
@@ -54,7 +54,7 @@ public class ArgazkienTaula extends JFrame {
 		setVisible(true);
 		igoActionListener();
 		bilatuActionListener();
-		argazkiakPCActionListener(properties);
+		argazkiakPCActionListener();
 	}
 	
 	private void igoActionListener() {
@@ -95,7 +95,7 @@ public class ArgazkienTaula extends JFrame {
 			}});
 		}
 	
-	private void argazkiakPCActionListener(Properties properties) {
+	private void argazkiakPCActionListener() {
 		argazkiakPC.addActionListener(new ActionListener(){
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -103,7 +103,7 @@ public class ArgazkienTaula extends JFrame {
 					SwingUtilities.getWindowAncestor(getContentPane()).dispose();
 					try {
 						table.setVisible(false);
-						aT = new ArgazkienTaula(properties);
+						aT = new ArgazkienTaula();
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

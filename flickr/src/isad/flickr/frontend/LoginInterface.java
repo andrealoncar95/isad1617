@@ -83,10 +83,10 @@ public class LoginInterface extends JPanel{
 					new LoginInterface();
 				}
 				else{
-					properties = LoginKud.instantzia.konektatu(apiKey.getText(), secret.getText());
+					LoginKud.instantzia.konektatu(apiKey.getText(), secret.getText());
 					SwingUtilities.getWindowAncestor(nagusia).dispose();
 					AukerakUI aU;
-					aU = new AukerakUI(properties);
+					aU = new AukerakUI();
 					aU.setVisible(true);
 				}
 			} catch (IOException e1) {

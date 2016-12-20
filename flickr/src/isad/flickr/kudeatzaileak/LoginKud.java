@@ -1,5 +1,7 @@
 package isad.flickr.kudeatzaileak;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.ResultSet;
@@ -68,6 +70,9 @@ public class LoginKud {
 	        properties.setProperty("nsid", auth.getUser().getId());
 	        properties.setProperty("displayname", auth.getUser().getRealName());
 	        properties.setProperty("username", auth.getUser().getUsername());
+	        File file = new File("src/setup.properties");
+	        FileOutputStream fr=new FileOutputStream(file);
+	        properties.store(fr, null);
 	        } else {
 	        	REST rest = new REST();
 	            rest.setHost(properties.getProperty("host"));

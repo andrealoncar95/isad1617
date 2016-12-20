@@ -61,40 +61,42 @@ public class ArgazkiakPantailaratu {
 	public static void main(String[] args) {
 		try {
 			ArgazkiakPantailaratu t = new ArgazkiakPantailaratu();
-			t.showPhotos();
+			t.argazkiakItzuli();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		System.exit(0);
 	}
 
-	public void showPhotos() {
+	public  PhotoList<Photo> argazkiakItzuli() {
 
 		String userId = properties.getProperty("nsid");
 		// String secret = properties.getProperty("secret");
 
 		PhotosetsInterface photosetsInterface = f.getPhotosetsInterface();
 		Photosets photosets;
+		PhotoList<Photo> col = null;
+		
 		try {
 			photosets = photosetsInterface.getList(userId);
 
 			Collection<Photoset> bildumak = photosets.getPhotosets();
-
+			
 			for (Photoset photoset : bildumak) {
 				String id = photoset.getId();
 				String title = photoset.getTitle();
 				String secret = photoset.getSecret();
 				int photoCount = photoset.getPhotoCount();
+				
+				//System.out.println("Title:" + title + " Secret:" + secret + " Count:" + photoCount);
 
-				System.out.println("Title:" + title + " Secret:" + secret + " Count:" + photoCount);
-
-				PhotoList<Photo> col;
+				
 				int PHOTOSPERPAGE = 2;
 				int HOWMANYPAGES = 1; // (int) Math.ceil(photoCount / 10);
 				for (int page = 1; page <= HOWMANYPAGES; page++) {
-					col = photosetsInterface.getPhotos(id /* photosetId */, PHOTOSPERPAGE, page);
-
-					for (Photo argazkia : col) {
+					col = col.add(0, photosetsInterface.getPhotos(id /* photosetId */, PHOTOSPERPAGE, page));
+					
+					/*for (Photo argazkia : col) {
 						saveImage(argazkia);
 						System.out.println(argazkia.getTitle() + ": ");
 						System.out.println(argazkia.getDescription() + ": ");
@@ -103,12 +105,16 @@ public class ArgazkiakPantailaratu {
 						System.out.println(argazkia.getDateTaken() + ": ");
 						System.out.println(argazkia.getGeoData() + ": ");
 						System.out.println(argazkia.getTags());
-					}
+					}*/
 				}
+				
 			}
+			
+			
 		} catch (FlickrException e) {
 			e.printStackTrace();
 		}
+		return col;
 
 	}
 

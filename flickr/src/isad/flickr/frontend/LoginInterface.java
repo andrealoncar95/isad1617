@@ -108,8 +108,6 @@ public class LoginInterface extends JPanel{
     private static void createAndShowGUI() throws IOException {
         //Create and set up the window.
         JFrame frame = new JFrame("Erabiltzailea eta pasahitza sartzeko formularioa");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         //Create and set up the content pane.
         JComponent newContentPane = new LoginInterface();
         newContentPane.setOpaque(true); //content panes must be opaque

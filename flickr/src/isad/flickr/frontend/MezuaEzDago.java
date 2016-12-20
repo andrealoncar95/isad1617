@@ -36,7 +36,6 @@ public class MezuaEzDago extends JFrame {
 		frame.add(panel, new GridBagConstraints());
 		frame.setSize(400, 400);
 		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
 	

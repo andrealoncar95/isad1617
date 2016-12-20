@@ -82,7 +82,6 @@ public class LoginInterface extends JPanel{
 				if (properties == null){
 					System.out.println("fdsfdfdsgdg");
 				}
-				
 				SwingUtilities.getWindowAncestor(nagusia).dispose();
 				AukerakUI aU;
 				aU = new AukerakUI(properties);
@@ -107,6 +106,8 @@ public class LoginInterface extends JPanel{
      * event-dispatching thread.
 	 * @throws IOException 
      */
+	
+	
     private static void createAndShowGUI() throws IOException {
         //Create and set up the window.
         JFrame frame = new JFrame("Erabiltzailea eta pasahitza sartzeko formularioa");

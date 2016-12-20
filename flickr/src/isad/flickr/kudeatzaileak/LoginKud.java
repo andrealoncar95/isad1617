@@ -1,10 +1,13 @@
 package isad.flickr.kudeatzaileak;
 
+import java.awt.Desktop;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
@@ -53,8 +56,16 @@ public class LoginKud {
 
 			String url = authInterface.getAuthorizationUrl(token, Permission.DELETE);
 
-			System.out.println("Itsatsi hurrengo URL-a nabigatzailean: ");
+			System.out.println("Hurrengo URL-a nabigatzailean irekiko zaizu: ");
 			System.out.println(url);
+			
+			Desktop desktop = Desktop.getDesktop();
+			try {
+				desktop.browse(new URI(url));
+			} catch (URISyntaxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			System.out.println("Itsatsi hemen emandako kodea:");
 			System.out.print(">>");
 

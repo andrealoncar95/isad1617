@@ -25,11 +25,11 @@ import com.flickr4java.flickr.auth.AuthInterface;
 import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.util.IOUtilities;
 
-
 public class LoginKud {
 	public static LoginKud instantzia = new LoginKud();
 	private Properties properties = null;
-	public LoginKud(){
+
+	public LoginKud() {
 
 	}
 
@@ -42,7 +42,7 @@ public class LoginKud {
 		} finally {
 			IOUtilities.close(in);
 		}
-		if (properties.getProperty("token").length() < 2){
+		if (properties.getProperty("token").length() < 2) {
 			properties.setProperty("apiKey", api);
 			properties.setProperty("secret", secret);
 			ArgazkiKud.f = new Flickr(properties.getProperty("apiKey"), properties.getProperty("secret"), new REST());
@@ -58,7 +58,7 @@ public class LoginKud {
 
 			System.out.println("Hurrengo URL-a nabigatzailean irekiko zaizu: ");
 			System.out.println(url);
-			
+
 			Desktop desktop = Desktop.getDesktop();
 			try {
 				desktop.browse(new URI(url));
@@ -83,24 +83,23 @@ public class LoginKud {
 			properties.setProperty("displayname", auth.getUser().getRealName());
 			properties.setProperty("username", auth.getUser().getUsername());
 			File file = new File("setup.properties");
-			FileOutputStream fr=new FileOutputStream(file);
+			FileOutputStream fr = new FileOutputStream(file);
 			properties.store(fr, null);
 		}
-			REST rest = new REST();
-			rest.setHost(properties.getProperty("host"));
+		REST rest = new REST();
+		rest.setHost(properties.getProperty("host"));
 
-			ArgazkiKud.f = new Flickr(properties.getProperty("apiKey"), properties.getProperty("secret"), rest);
+		ArgazkiKud.f = new Flickr(properties.getProperty("apiKey"), properties.getProperty("secret"), rest);
 
-			Auth auth = new Auth();
-			auth.setPermission(Permission.READ);
-			auth.setToken(properties.getProperty("token"));
-			auth.setTokenSecret(properties.getProperty("tokensecret"));
+		Auth auth = new Auth();
+		auth.setPermission(Permission.READ);
+		auth.setToken(properties.getProperty("token"));
+		auth.setTokenSecret(properties.getProperty("tokensecret"));
 
-			RequestContext requestContext = RequestContext.getRequestContext();
-			requestContext.setAuth(auth);
-			ArgazkiKud.f.setAuth(auth);
+		RequestContext requestContext = RequestContext.getRequestContext();
+		requestContext.setAuth(auth);
+		ArgazkiKud.f.setAuth(auth);
 
-		
 		return properties;
 	}
 }

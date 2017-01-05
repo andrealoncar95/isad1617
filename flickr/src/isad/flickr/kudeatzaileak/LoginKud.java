@@ -85,13 +85,13 @@ public class LoginKud {
 			File file = new File("setup.properties");
 			FileOutputStream fr=new FileOutputStream(file);
 			properties.store(fr, null);
-
+		}
 			REST rest = new REST();
 			rest.setHost(properties.getProperty("host"));
 
 			ArgazkiKud.f = new Flickr(properties.getProperty("apiKey"), properties.getProperty("secret"), rest);
 
-			auth = new Auth();
+			Auth auth = new Auth();
 			auth.setPermission(Permission.READ);
 			auth.setToken(properties.getProperty("token"));
 			auth.setTokenSecret(properties.getProperty("tokensecret"));
@@ -100,7 +100,7 @@ public class LoginKud {
 			requestContext.setAuth(auth);
 			ArgazkiKud.f.setAuth(auth);
 
-		}
+		
 		return properties;
 	}
 }

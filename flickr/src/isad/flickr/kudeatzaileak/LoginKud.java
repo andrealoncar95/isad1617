@@ -29,7 +29,7 @@ public class LoginKud {
 	public static LoginKud instantzia = new LoginKud();
 	private Properties properties = null;
 
-	public LoginKud() {
+	private LoginKud() {
 
 	}
 

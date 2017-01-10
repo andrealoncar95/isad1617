@@ -33,7 +33,7 @@ public class LoginKud {
 
 	}
 
-	public Properties konektatu(String api, String secret) throws IOException, FlickrException {
+	public void konektatu(String api, String secret) throws IOException, FlickrException {
 		InputStream in = null;
 		try {
 			in = new FileInputStream("setup.properties");
@@ -100,6 +100,5 @@ public class LoginKud {
 		requestContext.setAuth(auth);
 		ArgazkiKud.f.setAuth(auth);
 
-		return properties;
 	}
 }

@@ -16,7 +16,7 @@ import javax.swing.SwingUtilities;
 
 public class AukerakUI extends JFrame {
 
-	JButton argazkiakIgo = new JButton("Argazkiak igo edozein karpetan");
+	JButton argazkiakIgo = new JButton("Argazkiak pantailaratu");
 	
 	
 	public AukerakUI() {

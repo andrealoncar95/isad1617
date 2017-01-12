@@ -15,3 +15,6 @@
 >Aplikazioa irekitzerakoan Flickr-eko api eta secret-ak sartzea beharrezkoa da, horretarako, zure kontuan sartu, "compartiendo y extendiendo" menuan sakatu eta "1 clave API" estekan sakatzerakoan:
 >>1. Clave, adibidea *c9d8c54b90c8f05fd976253baa5d0c60*
 >>2. Secreto, adibidea *f88477726da57e3f*
+>
+>Aplikazioa erabiltzeko exekutatu behar den klasea LoginInterface.java klasea da, handik erabiltzailea konektatu dadin. Erabiltzaileak jada saioa ireki badu, ez da beharrezkoa berriro Api Key eta Secret jartzea. Baina, lehenengo aldia bada edo saioa itxi badu beste erabiltzaile bat sartzeko, beharrezkoa da bi horiek betetzea, horren ostean, ondo sartuz gero, nabigatzailea irekiko da mezu batekin baimenak emateko eta mezua baieztatu ostean, nabigatzailean agertzen den kodea kontsolan itsatsi beharko du erabiltzaileak. 
+>Hau guztia egin ostean, aplikazioa martxan egongo da erabiltzaileak Flickr-eko argazkiak igo ala bilatzeko.

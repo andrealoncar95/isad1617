@@ -3,6 +3,10 @@
 >
 >Proiektua erabiltzeko hurrengo liburutegiak beharrezkoak dira:
 > - [sqlite-jdbc-3.15.1.jar](https://bitbucket.org/xerial/sqlite-jdbc/downloads)
+> - [Flickr4Java-2.16.jar](https://bintray.com/boncey/Flickr4Java/Flickr4Java/2.16)
+> - [axis-1.4.jar](http://www.java2s.com/Code/Jar/a/Downloadaxis14jar.htm)
+> - [log4j-1.2.17.jar](https://logging.apache.org/log4j/1.2/download.html)
+> - [commons-codec-1.10.jar](https://mvnrepository.com/artifact/commons-codec/commons-codec/1.10)
 >
 >Eclipsen inportatu ondoren, liburutegia gehitu eta Maven upgrade egin beharko duzu.
 >
